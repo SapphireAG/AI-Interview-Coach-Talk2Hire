@@ -1,2 +1,5 @@
 # AI-Interview-Coach-Talk2Hire
-AI based interview coach, taking voice input to do sentiment analysis and giving personalized feedback to improve your chances of getting through interview rounds with ease. With clear visuals and analytical data for you to map your progress.
+Transcript model 
+openAI whisper - https://github.com/openai/whisper
+ffmpeg -https://ffmpeg.org/
+The model took 1min and 10 sec to transcript 3min and 33 sec audio mp3 file
