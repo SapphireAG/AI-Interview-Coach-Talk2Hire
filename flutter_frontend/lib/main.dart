@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
+import 'questions_page.dart';
 
 // void main() {
 //   runApp(const MyApp());
 // }
 
+// void main() {
+//   runApp(MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: LoginPage(),
+//   ));
+// }
+
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: LoginPage(),
+    home: QuestionsPage(),
   ));
 }
 
