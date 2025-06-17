@@ -16,10 +16,10 @@ def extract_features_from_file(file_path):
         return None
 
 # Load pre-trained model
-rf_model = joblib.load("/Users/amangolani/Desktop/Speech_Recog/rf_emotion_model.pkl")
+rf_model = joblib.load("/Users/amangolani/AI-Interview-Coach-Talk2Hire/rf_emotion_model.pkl")
 
 def predict_emotion(file_path):
-    features = extract_features_from_file(file_path)
+    features = extract_features_from_file(file_path) 
     if features is not None:
         prediction = rf_model.predict(features)
         return prediction[0]
@@ -28,5 +28,5 @@ def predict_emotion(file_path):
 
 # Example use
 if __name__ == "__main__":
-    test_audio_path = "/Users/amangolani/Desktop/Speech_Recog/VideoResume_Aman.wav"
+    test_audio_path = "/Users/amangolani/Downloads/audio3.wav"
     print("Predicted emotion:", predict_emotion(test_audio_path))
