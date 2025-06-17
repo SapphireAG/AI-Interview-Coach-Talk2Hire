@@ -9,7 +9,6 @@ class QuestionsPage extends StatefulWidget {
 String selectedCategory = "Scenario-Based Questions";
 int _selectedValue = 10; // Default selection
 
-
 void _startMock() {
   // Implement your mock start logic here
   print("Mock started");
@@ -81,7 +80,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
                   SizedBox(height: 20),
                   // Dropdown Box
                   Container(
@@ -93,54 +91,52 @@ class _QuestionsPageState extends State<QuestionsPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: DropdownButtonHideUnderline(
-                                        child: DropdownButton<String>(
-                    alignment: Alignment.center,
-                    value: selectedCategory,
-                    dropdownColor:
-                        Colors.white, // Background color for dropdown items
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.black,
-                    ), // Dropdown icon
-                    items: [
-                      DropdownMenuItem(
+                      child: DropdownButton<String>(
                         alignment: Alignment.center,
-                        value: "Scenario-Based Questions",
-                        child: Text(
-                          "Scenario-Based Questions",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black , ),
-                        ),
+                        value: selectedCategory,
+                        dropdownColor:
+                            Colors.white, // Background color for dropdown items
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.black,
+                        ), // Dropdown icon
+                        items: [
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: "Scenario-Based Questions",
+                            child: Text(
+                              "Scenario-Based Questions",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: "Technical Questions",
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Technical Questions",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: "Personal Questions",
+                            child: Text(
+                              "Personal Questions",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        ],
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedCategory = newValue!;
+                          });
+                        },
                       ),
-                      DropdownMenuItem(
-                        alignment: Alignment.center,
-                        value: "Technical Questions",
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          "Technical Questions",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        alignment: Alignment.center,
-                        value: "Personal Questions",
-                        child: Text(
-                          "Personal Questions",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ],
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCategory = newValue!;
-                      });
-                    },
-                  ),
-                ),
                     ),
-                    
-                  
+                  ),
 
                   SizedBox(height: 30),
 
@@ -153,14 +149,12 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-        _buildRadioOption(5, "5 Questions"),
-SizedBox(height: 20),
+                  _buildRadioOption(5, "5 Questions"),
+                  SizedBox(height: 20),
 
-        _buildRadioOption(10, "10 Questions"),
-        SizedBox(height: 20),
-        _buildRadioOption(15, "15 Questions"),
-
-                  
+                  _buildRadioOption(10, "10 Questions"),
+                  SizedBox(height: 20),
+                  _buildRadioOption(15, "15 Questions"),
 
                   SizedBox(height: 20), // Spacing before dropdown box
                 ],
@@ -192,43 +186,46 @@ SizedBox(height: 20),
     );
   }
 
-Widget _buildRadioOption(int value, String text) {
-  return Center( // ✅ Ensures entire row is centered
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center, // ✅ Centers items inside row
-      children: [
-        Radio(
-          autofocus: false,
-          fillColor: WidgetStateProperty.all<Color>(Colors.white), // White color for the radio button
-          value: value,
-          groupValue: _selectedValue,
-          onChanged: (int? newValue) {
-            setState(() {
-              _selectedValue = newValue!;
-            });
-          },
-        ),
-        Container(
-          height: 40.0,
-          width: 200.0,
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.white, // White background for the box
-            borderRadius: BorderRadius.circular(10), // Rounded corners
+  Widget _buildRadioOption(int value, String text) {
+     return Row(
+        mainAxisAlignment:
+            MainAxisAlignment.start, // ✅ Centers items inside row
+        children: [
+          Radio(
+            autofocus: false,
+            fillColor: WidgetStateProperty.all<Color>(
+              Colors.white,
+            ), // White color for the radio button
+            value: value,
+            groupValue: _selectedValue,
+            onChanged: (int? newValue) {
+              setState(() {
+                _selectedValue = newValue!;
+              });
+            },
           ),
-          child: Center( // ✅ Ensures text inside box is centered
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.normal),
+          Container(
+            height: 40.0,
+            width: 200.0,
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.white, // White background for the box
+              borderRadius: BorderRadius.circular(10), // Rounded corners
+            ),
+            child: Center(
+              // ✅ Ensures text inside box is centered
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      
+    );
+  }
 }
-
-
-}
-
-
