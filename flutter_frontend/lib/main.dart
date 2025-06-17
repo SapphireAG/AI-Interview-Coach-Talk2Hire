@@ -5,11 +5,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'login_page.dart';
 import 'questions_screen.dart';
 
-// void main() async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await GlobalAudioScope().ensureInitialized();
-//   runApp(Quiz());
-// } 
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await GlobalAudioScope().ensureInitialized();
+  runApp(Quiz());
+} 
 
 // void main() {
 //   runApp(MaterialApp(
@@ -18,9 +18,9 @@ import 'questions_screen.dart';
 //   ));
 // }
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: QuestionsPage(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: QuestionsPage(),
+//   ));
+// }
