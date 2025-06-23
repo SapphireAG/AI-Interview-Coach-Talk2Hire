@@ -26,7 +26,7 @@ class _QuizState extends State<Quiz> {
   }
 
   Future<void> uploadRecording(String filePath) async {
-    final uri = Uri.parse("http://<YOUR_BACKEND_IP>:8000/upload-audio/");
+    final uri = Uri.parse("http://127.0.0.1:8000/upload-audio/");
     final request = http.MultipartRequest('POST', uri);
     request.files.add(await http.MultipartFile.fromPath('file', filePath));
 
@@ -248,7 +248,7 @@ class _QuizState extends State<Quiz> {
                       ),
                     ),
 
-                    const SizedBox(height: 360),
+                    const SizedBox(height: 250),
 
                     // Recording button
                     ElevatedButton.icon(
