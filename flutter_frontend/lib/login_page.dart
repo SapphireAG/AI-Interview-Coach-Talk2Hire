@@ -11,7 +11,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _getLoginInfo() {
-    String username = _usernameController.text;
+    String username = _usernameController.text; 
     print("Username: $username");
     String password = _passwordController.text;
     print("Password: $password");
