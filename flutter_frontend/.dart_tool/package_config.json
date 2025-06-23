@@ -189,9 +189,9 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/JAHNAVI%20SINGH/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.4.0",
+      "rootUri": "file:///C:/Users/JAHNAVI%20SINGH/AppData/Local/Pub/Cache/hosted/pub.dev/http-0.13.6",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "2.19"
     },
     {
       "name": "http_parser",
@@ -470,7 +470,7 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-06-23T11:25:06.843876Z",
+  "generated": "2025-06-23T13:23:02.116049Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///E:/flutter/flutter",
