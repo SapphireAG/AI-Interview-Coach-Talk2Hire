@@ -108,6 +108,10 @@ class _QuizState extends State<Quiz> {
           isRecording = false;
           recordingPath = filePath;
         });
+
+        // Upload the recording
+        await uploadRecording(filePath);
+        print("Recording saved at: $filePath");
       }
     }
   }
