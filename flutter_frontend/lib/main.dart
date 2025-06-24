@@ -8,8 +8,13 @@ import 'questions_screen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalAudioScope().ensureInitialized();
-  runApp(Quiz());
-} 
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Quiz(),
+    ),
+  );
+}  
 
 // void main() {
 //   runApp(MaterialApp(
