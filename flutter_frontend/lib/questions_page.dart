@@ -169,7 +169,7 @@ class _QuizState extends State<Quiz> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 32),
             Transform.translate(
               offset: const Offset(0, -90),
               child: SizedBox(
@@ -258,7 +258,7 @@ class _QuizState extends State<Quiz> {
                     ),
                   ),
 
-                  const SizedBox(height: 250),
+                  const SizedBox(height: 360),
 
                   // Recording button
                   ElevatedButton.icon(
@@ -281,7 +281,7 @@ class _QuizState extends State<Quiz> {
                     ),
                   ),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   if (recordingPath != null) ...[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -308,7 +308,7 @@ class _QuizState extends State<Quiz> {
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Color.fromARGB(255, 91, 106, 234),
-                            textStyle: const TextStyle(fontSize: 15),
+                            textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
                               vertical: 16,
                               horizontal: 12,
@@ -369,7 +369,7 @@ class _QuizState extends State<Quiz> {
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Color.fromARGB(255, 91, 106, 234),
-                            textStyle: const TextStyle(fontSize: 15),
+                            textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
                               vertical: 16,
                               horizontal: 12,
