@@ -318,7 +318,7 @@ class _QuizState extends State<Quiz> {
                             ),
                           ),
                         ),
-                        //Transcription
+                        //Transcription 
                         ElevatedButton.icon(
                           onPressed: () {
                             if (_transcriptionText != null) {
@@ -327,18 +327,13 @@ class _QuizState extends State<Quiz> {
 
                                 builder:
                                     (_) => AlertDialog(
-                                      backgroundColor: Color.fromARGB(
-                                        255,
-                                        91,
-                                        106,
-                                        234,
-                                      ),
+                                      
                                       title: const Text(
                                         "Transcription",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         ),
                                       ),
                                       content: SingleChildScrollView(
@@ -346,7 +341,7 @@ class _QuizState extends State<Quiz> {
                                           _transcriptionText!,
                                           softWrap: true,
                                           style: const TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontSize: 16,
                                           ),
                                         ),
