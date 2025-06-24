@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
@@ -18,6 +18,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   final AudioRecorder audioRecorder = AudioRecorder();
+  String? _transcriptionText;
   var activeScreen = 'previous-screen';
   switchScreen() {
     setState(() {
@@ -25,7 +26,7 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  Future<void> uploadRecording(String filePath) async {
+  Future<String?> uploadRecording(String filePath) async {
     final uri = Uri.parse("http://127.0.0.1:8000/upload-audio/");
     final request = http.MultipartRequest('POST', uri);
     request.files.add(await http.MultipartFile.fromPath('file', filePath));
@@ -33,11 +34,14 @@ class _QuizState extends State<Quiz> {
     final response = await request.send();
 
     if (response.statusCode == 200) {
-      print("Upload successful");
-    } else {
-      print("Upload failed with status: ${response.statusCode}");
-    }
+    final responseBody = await response.stream.bytesToString();
+    final decoded = json.decode(responseBody);
+    return decoded["transcript"]; // get transcript from FastAPI
+  } else {
+    print("Upload failed with status: ${response.statusCode}");
+    return null;
   }
+}
   // @override
   // Widget build(context){
   //   return MaterialApp(
@@ -110,7 +114,14 @@ class _QuizState extends State<Quiz> {
         });
 
         // Upload the recording
-        await uploadRecording(filePath);
+        final transcript = await uploadRecording(filePath);
+if (transcript != null) {
+  setState(() {
+    _transcriptionText = transcript;
+  });
+  print("Transcript: $transcript");
+}
+
         print("Recording saved at: $filePath");
       }
     }
@@ -316,7 +327,28 @@ class _QuizState extends State<Quiz> {
                           ),
                           //Transcription
                           ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+
+                              if (_transcriptionText != null) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Transcription"),
+        content: Text(_transcriptionText!),
+        actions: [
+          TextButton(
+            child: const Text("Close"),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("No transcription available.")),
+    );
+  }
+                            },
                             icon: Icon(Icons.visibility, color: Colors.white),
                             label: Text('See Transcription'),
                             style: ElevatedButton.styleFrom(
