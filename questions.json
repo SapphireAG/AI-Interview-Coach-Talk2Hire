@@ -1,0 +1,402 @@
+[
+  {
+    "question_id": "DS001",
+    "question_text": "Sample question 1 on Feature Engineering?",
+    "topic": "Model Evaluation",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 1.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS002",
+    "question_text": "Sample question 2 on Data Science Basics?",
+    "topic": "Data Cleaning",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 2.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS003",
+    "question_text": "Sample question 3 on Model Evaluation?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 3.",
+    "score_threshold": 7
+  },
+  {
+    "question_id": "DS004",
+    "question_text": "Sample question 4 on Data Cleaning?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 4.",
+    "score_threshold": 4
+  },
+  {
+    "question_id": "DS005",
+    "question_text": "Sample question 5 on Data Science Basics?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 5.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS006",
+    "question_text": "Sample question 6 on Data Cleaning?",
+    "topic": "Feature Engineering",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 6.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS007",
+    "question_text": "Sample question 7 on Feature Engineering?",
+    "topic": "Machine Learning",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 7.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS008",
+    "question_text": "Sample question 8 on Data Engineering?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 8.",
+    "score_threshold": 4
+  },
+  {
+    "question_id": "DS009",
+    "question_text": "Sample question 9 on Natural Language Processing?",
+    "topic": "Data Visualization",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 9.",
+    "score_threshold": 1
+  },
+  {
+    "question_id": "DS010",
+    "question_text": "Sample question 10 on Natural Language Processing?",
+    "topic": "Model Evaluation",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 10.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS011",
+    "question_text": "Sample question 11 on Natural Language Processing?",
+    "topic": "Data Science Basics",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 11.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS012",
+    "question_text": "Sample question 12 on Statistics?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 12.",
+    "score_threshold": 2
+  },
+  {
+    "question_id": "DS013",
+    "question_text": "Sample question 13 on Model Evaluation?",
+    "topic": "Statistics",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 13.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS014",
+    "question_text": "Sample question 14 on Statistics?",
+    "topic": "Feature Engineering",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 14.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS015",
+    "question_text": "Sample question 15 on Model Evaluation?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 15.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS016",
+    "question_text": "Sample question 16 on Statistics?",
+    "topic": "Model Evaluation",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 16.",
+    "score_threshold": 6
+  },
+  {
+    "question_id": "DS017",
+    "question_text": "Sample question 17 on Machine Learning?",
+    "topic": "Machine Learning",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 17.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS018",
+    "question_text": "Sample question 18 on Feature Engineering?",
+    "topic": "Data Engineering",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 18.",
+    "score_threshold": 2
+  },
+  {
+    "question_id": "DS019",
+    "question_text": "Sample question 19 on Natural Language Processing?",
+    "topic": "Machine Learning",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 19.",
+    "score_threshold": 7
+  },
+  {
+    "question_id": "DS020",
+    "question_text": "Sample question 20 on Statistics?",
+    "topic": "Data Cleaning",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 20.",
+    "score_threshold": 4
+  },
+  {
+    "question_id": "DS021",
+    "question_text": "Sample question 21 on Data Visualization?",
+    "topic": "Model Evaluation",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 21.",
+    "score_threshold": 8
+  },
+  {
+    "question_id": "DS022",
+    "question_text": "Sample question 22 on Machine Learning?",
+    "topic": "Big Data",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 22.",
+    "score_threshold": 3
+  },
+  {
+    "question_id": "DS023",
+    "question_text": "Sample question 23 on Statistics?",
+    "topic": "Feature Engineering",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 23.",
+    "score_threshold": 6
+  },
+  {
+    "question_id": "DS024",
+    "question_text": "Sample question 24 on Natural Language Processing?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 24.",
+    "score_threshold": 2
+  },
+  {
+    "question_id": "DS025",
+    "question_text": "Sample question 25 on Data Cleaning?",
+    "topic": "Model Evaluation",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 25.",
+    "score_threshold": 2
+  },
+  {
+    "question_id": "DS026",
+    "question_text": "Sample question 26 on Feature Engineering?",
+    "topic": "Natural Language Processing",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 26.",
+    "score_threshold": 4
+  },
+  {
+    "question_id": "DS027",
+    "question_text": "Sample question 27 on Machine Learning?",
+    "topic": "Model Evaluation",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 27.",
+    "score_threshold": 7
+  },
+  {
+    "question_id": "DS028",
+    "question_text": "Sample question 28 on Natural Language Processing?",
+    "topic": "Feature Engineering",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 28.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS029",
+    "question_text": "Sample question 29 on Big Data?",
+    "topic": "Data Visualization",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 29.",
+    "score_threshold": 6
+  },
+  {
+    "question_id": "DS030",
+    "question_text": "Sample question 30 on Data Visualization?",
+    "topic": "Data Science Basics",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 30.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS031",
+    "question_text": "Sample question 31 on Data Science Basics?",
+    "topic": "Big Data",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 31.",
+    "score_threshold": 4
+  },
+  {
+    "question_id": "DS032",
+    "question_text": "Sample question 32 on Statistics?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 32.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS033",
+    "question_text": "Sample question 33 on Data Science Basics?",
+    "topic": "Data Visualization",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 33.",
+    "score_threshold": 3
+  },
+  {
+    "question_id": "DS034",
+    "question_text": "Sample question 34 on Big Data?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 34.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS035",
+    "question_text": "Sample question 35 on Natural Language Processing?",
+    "topic": "Data Cleaning",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 35.",
+    "score_threshold": 3
+  },
+  {
+    "question_id": "DS036",
+    "question_text": "Sample question 36 on Statistics?",
+    "topic": "Big Data",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 36.",
+    "score_threshold": 3
+  },
+  {
+    "question_id": "DS037",
+    "question_text": "Sample question 37 on Natural Language Processing?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 37.",
+    "score_threshold": 3
+  },
+  {
+    "question_id": "DS038",
+    "question_text": "Sample question 38 on Natural Language Processing?",
+    "topic": "Model Evaluation",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 38.",
+    "score_threshold": 2
+  },
+  {
+    "question_id": "DS039",
+    "question_text": "Sample question 39 on Data Cleaning?",
+    "topic": "Data Science Basics",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 39.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS040",
+    "question_text": "Sample question 40 on Feature Engineering?",
+    "topic": "Statistics",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 40.",
+    "score_threshold": 1
+  },
+  {
+    "question_id": "DS041",
+    "question_text": "Sample question 41 on Model Evaluation?",
+    "topic": "Model Evaluation",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 41.",
+    "score_threshold": 5
+  },
+  {
+    "question_id": "DS042",
+    "question_text": "Sample question 42 on Model Evaluation?",
+    "topic": "Statistics",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 42.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS043",
+    "question_text": "Sample question 43 on Feature Engineering?",
+    "topic": "Machine Learning",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 43.",
+    "score_threshold": 1
+  },
+  {
+    "question_id": "DS044",
+    "question_text": "Sample question 44 on Natural Language Processing?",
+    "topic": "Data Engineering",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 44.",
+    "score_threshold": 1
+  },
+  {
+    "question_id": "DS045",
+    "question_text": "Sample question 45 on Model Evaluation?",
+    "topic": "Statistics",
+    "difficulty": "Medium",
+    "ideal_answer": "This is a placeholder ideal answer for question 45.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS046",
+    "question_text": "Sample question 46 on Data Engineering?",
+    "topic": "Data Science Basics",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 46.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS047",
+    "question_text": "Sample question 47 on Big Data?",
+    "topic": "Data Engineering",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 47.",
+    "score_threshold": 1
+  },
+  {
+    "question_id": "DS048",
+    "question_text": "Sample question 48 on Model Evaluation?",
+    "topic": "Big Data",
+    "difficulty": "Easy",
+    "ideal_answer": "This is a placeholder ideal answer for question 48.",
+    "score_threshold": 9
+  },
+  {
+    "question_id": "DS049",
+    "question_text": "Sample question 49 on Feature Engineering?",
+    "topic": "Data Cleaning",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 49.",
+    "score_threshold": 10
+  },
+  {
+    "question_id": "DS050",
+    "question_text": "Sample question 50 on Data Visualization?",
+    "topic": "Data Engineering",
+    "difficulty": "Hard",
+    "ideal_answer": "This is a placeholder ideal answer for question 50.",
+    "score_threshold": 7
+  }
+]
