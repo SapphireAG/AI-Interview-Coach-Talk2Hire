@@ -217,7 +217,12 @@ class _QuizState extends State<Quiz> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(Icons.arrow_back, size: 28),
+                      IconButton(
+                      onPressed: () => Navigator.pushNamed(context, '/questions_screen'), 
+                      icon: const Icon(Icons.arrow_back),
+                      iconSize: 28,
+                      ),
+                      
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -236,7 +241,11 @@ class _QuizState extends State<Quiz> {
                           ),
                         ),
                       ),
-                      const Icon(Icons.arrow_forward, size: 28),
+                      IconButton(
+                      onPressed: () => Navigator.pushNamed(context, '/login_page'), 
+                      icon: const Icon(Icons.arrow_forward),
+                      iconSize: 28,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 5),
@@ -283,26 +292,32 @@ class _QuizState extends State<Quiz> {
                   ),
 
                   const SizedBox(height: 30),
-                  if (recordingPath != null) ...[
+                  if (recordingPath != null ) ...[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
                           onPressed: () async {
+                            
                             _audioPlayer ??= AudioPlayer();
-
+                           if (recordingPath != null && await File(recordingPath!).exists()) {
                             await _audioPlayer!.play(
                               DeviceFileSource(recordingPath!),
+
                             );
                             _audioPlayer!.onPlayerComplete.listen((event) {
                               print("Playback complete");
-                            });
+                           });
                             // Optionally print duration
                             await Future.delayed(Duration(milliseconds: 300));
                             final duration = await _audioPlayer!.getDuration();
                             print(
                               "Audio duration: ${duration?.inMilliseconds ?? 'unknown'} ms",
                             );
+                           }
+                           else{
+                            print("\n\n\nFile does not exist at: $recordingPath \n\n\n\n");
+                           }
                           },
                           icon: Icon(Icons.play_arrow, color: Colors.white),
                           label: Text('Play Recording'),

@@ -2,19 +2,37 @@ import 'package:flutter_application_2/questions_page.dart';
 // import 'package:flutter_frontend/questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'login_page.dart';
+import 'package:flutter_application_2/login_page.dart';
 import 'questions_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalAudioScope().ensureInitialized();
-  runApp(
-    MaterialApp(
+  runApp(MyApp());
+} 
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      
+      title: 'Interview App',
       debugShowCheckedModeBanner: false,
-      home: Quiz(),
-    ),
-  );
-}  
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/questions_screen': (context) => const QuestionsPage(),
+        '/questions_page': (context) => const Quiz(),
+        '/login_page':(context)=> const LoginPage()
+      },
+    );
+  }
+}
 
 // void main() {
 //   runApp(MaterialApp(
