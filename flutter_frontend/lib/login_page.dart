@@ -20,36 +20,44 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      appBar: AppBar(
-        toolbarHeight: 100.0,
-        backgroundColor: Color.fromARGB(255, 91, 106, 234),
-        title: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-              12.0,
-            ), // Adjust the radius as needed
-            child: Image.asset(
-              'assets/logo.jpg',
-              height: 50.0,
-              width: 200.0,
-              scale: 1.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      ),
-
+      backgroundColor: Color.fromARGB(255, 249, 250, 251),
+      // appBar: AppBar(
+      //   toolbarHeight: 100.0,
+      //   backgroundColor: Color.fromARGB(255, 91, 106, 234),
+      //   title: Center(
+      //     child: ClipRRect(
+      //       borderRadius: BorderRadius.circular(
+      //         12.0,
+      //       ), // Adjust the radius as needed
+      //       child: Image.asset(
+      //         'assets/logo.jpg',
+      //         height: 50.0,
+      //         width: 200.0,
+      //         scale: 1.0,
+      //         fit: BoxFit.cover,
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      
       body: Center(
         child: Column(
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child: Image.asset(
+                'assets/NEW_logo.png',
+                height: 250 ,
+              ),
+            ),
+             
             Container(
               height: 300.0,
               width: 300.0,
               padding: EdgeInsets.all(20.0),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 91, 106, 234),
+                color: Color.fromARGB(255, 237, 237, 237),
                 borderRadius: BorderRadius.circular(20.0),
                 boxShadow: [
                   BoxShadow(
@@ -66,16 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       Icon(
-                        Icons.account_circle, // ✅ Flutter's built-in login icon
+                        
+                        Icons.account_circle, 
                         size: 40,
-                        color: Colors.white,
+                        color:Colors.black54,
                       ),
                       SizedBox(width: 10),
                       Text(
                         textAlign: TextAlign.center,
                         "Login To Talk2Hire",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 6, 178, 200),
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -88,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                     'Username',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -115,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                     'Password',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -142,21 +151,23 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 _getLoginInfo();
-                // Navigator.pushNamed(context, '/home');
+                 Navigator.pushNamed(context, '/questions_screen');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 91, 106, 234),
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                backgroundColor: Color.fromARGB(255, 190, 233, 236),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
               ),
+              
               child: Text(
                 'Continue',
                 style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
+                  fontSize: 22,
+                  color: Colors.black,
                   fontStyle: FontStyle.normal,
                 ),
               ),
             ),
+            SizedBox(height: 50),
           ],
         ),
       ),
