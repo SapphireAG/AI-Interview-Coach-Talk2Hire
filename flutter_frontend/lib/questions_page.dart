@@ -6,7 +6,7 @@ import 'package:record/record.dart';
 import 'package:path/path.dart' as p;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
-
+import 'dart:async';
 import 'package:http/http.dart' as http;
 
 class Quiz extends StatefulWidget {
@@ -25,7 +25,37 @@ class _QuizState extends State<Quiz> {
       activeScreen = 'questions-screen';
     });
   }
+Future<void> sendImage(File imageFile) async {
+  final request = http.MultipartRequest(
+    'POST',
+    Uri.parse('http://127.0.0.1:8000/predict-emotion'),
+  );
 
+  request.files.add(
+    await http.MultipartFile.fromPath('file', imageFile.path),
+  );
+
+  final response = await request.send();
+  final responseBody = await response.stream.bytesToString();
+
+  print("Emotion prediction: $responseBody");
+}
+Timer? periodicTimer;
+void startCapturingPeriodically() {
+  periodicTimer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    try {
+      final image = await cameraController!.takePicture();
+
+      print('Captured at: ${image.path}');
+
+      // Now you can send this image to your backend:
+      await sendImage(File(image.path));
+
+    } catch (e) {
+      print('Error capturing image: $e');
+    }
+  });
+}
 // Function to upload the recording to FastAPI
   Future<String?> uploadRecording(String filePath) async {
     final uri = Uri.parse("http://127.0.0.1:8000/upload-audio/");
@@ -43,78 +73,49 @@ class _QuizState extends State<Quiz> {
       return null;
     }
   }
-  // @override
-  // Widget build(context){
-  //   return MaterialApp(
-  //     home: Scaffold(
-  //       backgroundColor: Colors.white,
-  //       body: Container(
-  //         color: Colors.purple,
-  //         child:  Column(
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //     children: [
-  //       const SizedBox(height: 55),
 
-  //       Center(
-  //         child: Container(
-  //           // color:Colors.blue,
-  //           padding: const EdgeInsets.all(12),
-  //           decoration: BoxDecoration(
-  //             color: Colors.blue,
-  //             borderRadius: BorderRadius.circular(12),
-  //           ),
-  //           child: const Text(
-  //             'Question x',
-  //             style:TextStyle(
-  //                 color: Colors.white,
-  //                 fontSize: 16,
-  //               ),
-
-  //             ),
-
-  //           ),
-
-  //       ),
-  //     ],
-  //         ),
-
-  //     ),
-  //       ),
-  //   );
-
-  // }
   bool isRecording = false;
   String? recordingPath;
   void toggleRecording() async {
+  try {
     if (!isRecording) {
       await _setupCameraController();
+
       if (await audioRecorder.hasPermission()) {
+        startCapturingPeriodically();
+
         final Directory appDocumentsDir =
             await getApplicationDocumentsDirectory();
         final String filePath = p.join(appDocumentsDir.path, "recording.wav");
+
         await audioRecorder.start(
           const RecordConfig(
-            // encoder: AudioEncoder.pcm16bits,
-            // sampleRate: 16000,
-            // numChannels: 1,
-          ),
+              // encoder: AudioEncoder.pcm16bits,
+              // sampleRate: 16000,
+              // numChannels: 1,
+              ),
           path: filePath,
         );
+
         setState(() {
           isRecording = true;
           recordingPath = null;
         });
       }
     } else {
+      // Stop both audio and image capture
+      periodicTimer?.cancel();
+      print("Stopped periodic capture.");
+
       String? filePath = await audioRecorder.stop();
       await Future.delayed(const Duration(milliseconds: 500));
+
       if (filePath != null) {
         setState(() {
           isRecording = false;
           recordingPath = filePath;
         });
 
-        // Upload the recording
         final transcript = await uploadRecording(filePath);
         if (transcript != null) {
           setState(() {
@@ -126,8 +127,13 @@ class _QuizState extends State<Quiz> {
         print("Recording saved at: $filePath");
       }
     }
+  } catch (e) {
+    print("Error during recording toggle: $e");
+    setState(() {
+      isRecording = false;
+    });
   }
-
+}
   AudioPlayer? _audioPlayer;
   @override
   void dispose() {
@@ -143,22 +149,21 @@ class _QuizState extends State<Quiz> {
 
   List<CameraDescription> cameras = [];
   CameraController? cameraController;
-  Future<void> _setupCameraController() async {
-    List<CameraDescription> _cameras = await availableCameras();
-    if (_cameras.isNotEmpty) {
-      setState(() {
-        cameras = _cameras;
-        cameraController = CameraController(
-          _cameras.first,
-          ResolutionPreset.high,
-        );
-      });
-      cameraController?.initialize().then((_) {
-        setState(() {});
-      });
-    }
-  }
+Future<void> _setupCameraController() async {
+  final _cameras = await availableCameras();
+  final frontCamera = _cameras.firstWhere(
+    (camera) => camera.lensDirection == CameraLensDirection.front,
+    orElse: () => _cameras.first,
+  );
 
+  cameraController = CameraController(
+    frontCamera,
+    ResolutionPreset.medium,
+  );
+
+  await cameraController!.initialize();
+  setState(() {});
+}
   Widget _buildUI() {
     if (cameraController == null ||
         cameraController?.value.isInitialized == false) {
@@ -172,13 +177,12 @@ class _QuizState extends State<Quiz> {
           children: [
             const SizedBox(height: 32),
             Transform.translate(
-              offset: const Offset(0, -90),
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.3,
-                width: MediaQuery.sizeOf(context).width * 0.8,
-                child: CameraPreview(cameraController!),
-              ),
-            ),
+            offset: const Offset(0, -90),
+             child: AspectRatio(
+            aspectRatio: cameraController!.value.aspectRatio,
+             child: CameraPreview(cameraController!),
+       ),
+),
             // Transform.translate(
             //   offset: const Offset(-4, -30),
             // child: IconButton(
@@ -268,7 +272,7 @@ class _QuizState extends State<Quiz> {
                     ),
                   ),
 
-                  const SizedBox(height: 360),
+                  const SizedBox(height: 300),
 
                   // Recording button
                   ElevatedButton.icon(
