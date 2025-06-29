@@ -72,27 +72,30 @@ class ResidualBlock(nn.Module):
 class ResEmoteNet(nn.Module):
             def __init__(self, num_classes=7):
                 super(ResEmoteNet, self).__init__()
-                self.conv1 = nn.Conv2d(3, 64, kernel_size=3, padding=1)
-                self.bn1 = nn.BatchNorm2d(64)
+                self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
+                self.bn1 = nn.BatchNorm2d(32)
 
-                self.conv2 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
-                self.bn2 = nn.BatchNorm2d(128)
+                self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
+                self.bn2 = nn.BatchNorm2d(64)
 
-                self.conv3 = nn.Conv2d(128, 256, kernel_size=3, padding=1)
-                self.bn3 = nn.BatchNorm2d(256)
+                self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
+                self.bn3 = nn.BatchNorm2d(128)
 
-                self.se = SEBlock(256)
+                self.se = SEBlock(128, reduction=8)
 
-                self.res_block1 = ResidualBlock(256, 512, stride=2)
-                self.res_block2 = ResidualBlock(512, 1024, stride=2)
-                self.res_block3 = ResidualBlock(1024, 2048, stride=2)
+                self.res_block1 = ResidualBlock(128, 256, stride=2)
+                self.res_block2 = ResidualBlock(256, 512, stride=2)
+                self.res_block3 = ResidualBlock(512, 1024, stride=2)
 
                 self.pool = nn.AdaptiveAvgPool2d((1, 1))
 
-                self.fc1 = nn.Linear(2048, 1024)
-                self.fc2 = nn.Linear(1024, 512)
-                self.fc3 = nn.Linear(512, 256)
-                self.fc4 = nn.Linear(256, num_classes)
+                self.fc1 = nn.Linear(1024, 512)
+                self.bn_fc1 = nn.BatchNorm1d(512)
+                self.fc2 = nn.Linear(512, 256)
+                self.bn_fc2 = nn.BatchNorm1d(256)
+                self.fc3 = nn.Linear(256, 128)
+                self.bn_fc3 = nn.BatchNorm1d(128)
+                self.fc4 = nn.Linear(128, num_classes)
 
                 self.dropout1 = nn.Dropout(0.3)
                 self.dropout2 = nn.Dropout(0.4)
@@ -118,11 +121,11 @@ class ResEmoteNet(nn.Module):
                 x = self.pool(x)
                 x = torch.flatten(x, 1)
 
-                x = F.relu(self.fc1(x))
+                x = F.relu(self.bn_fc1(self.fc1(x)))
                 x = self.dropout2(x)
-                x = F.relu(self.fc2(x))
+                x = F.relu(self.bn_fc2(self.fc2(x)))
                 x = self.dropout2(x)
-                x = F.relu(self.fc3(x))
+                x = F.relu(self.bn_fc3(self.fc3(x)))
                 x = self.dropout2(x)
                 x = self.fc4(x)
                 return x
