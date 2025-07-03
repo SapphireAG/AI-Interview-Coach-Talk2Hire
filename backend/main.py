@@ -84,3 +84,7 @@ async def upload_audio(file: UploadFile = File(...)):
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the AI Interview Coach API"}
+
+@app.get("/feedback/{Transcript}")
+def get_Feedback():
+    pass
