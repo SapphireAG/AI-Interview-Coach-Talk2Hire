@@ -27,8 +27,6 @@ app.add_middleware(
 
 device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = ResEmoteNet(num_classes=7).to(device)
-#checkpoint = torch.load("D:\\Talk2Hire\\AI-Interview-Coach-Talk2Hire\\backend\\FER\\best_resnetmnet_model.pth", map_location=device)
-#D:\Talk2Hire\AI-Interview-Coach-Talk2Hire\backend\FER\best_resemotenet_model.pth
 checkpoint=torch.load(r"D:\Talk2Hire\AI-Interview-Coach-Talk2Hire\backend\FER\best_resemotenet_model.pth", map_location=device)
 model.load_state_dict(checkpoint)
 model.eval()
