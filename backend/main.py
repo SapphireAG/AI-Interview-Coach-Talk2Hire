@@ -9,8 +9,17 @@ import shutil
 import os
 from FER import ResEmoteNet
 from TranscriptionModel.transcript import transcribe_audio
+from feedbackModel.feedback_llm import run_feedback_pipeline
 
 app = FastAPI()
+
+#llm feedback struct
+class FeedbackRequest(BaseModel):
+    question: str
+    answer: str
+    tone: str
+    emotion: str
+
 
 # Add CORS middleware
 origins = [
@@ -81,10 +90,24 @@ async def upload_audio(file: UploadFile = File(...)):
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
     
+    
+#  LLM Feedback
+@app.post("/generate-feedback/")
+async def generate_feedback_api(payload: FeedbackRequest):
+    try:
+        result = run_feedback_pipeline(
+            question=payload.question,
+            answer=payload.answer,
+            tone=payload.tone,
+            emotion=payload.emotion
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the AI Interview Coach API"}
 
-@app.get("/feedback/{Transcript}")
-def get_Feedback():
-    pass
+
+
