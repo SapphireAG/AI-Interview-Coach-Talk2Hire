@@ -170,30 +170,30 @@ Future<void> _setupCameraController() async {
       return const Center(child: CircularProgressIndicator());
     }
     return SafeArea(
-      child: SizedBox.expand(
+
+      child: SizedBox(
+        
+        //width:screenWidth*0.8
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 32),
+            const SizedBox(height: 160),
             Transform.translate(
             offset: const Offset(0, -90),
-             child: AspectRatio(
-            aspectRatio: cameraController!.value.aspectRatio,
-             child: CameraPreview(cameraController!),
-       ),
-),
-            // Transform.translate(
-            //   offset: const Offset(-4, -30),
-            // child: IconButton(
-            //   onPressed: (){},
-            //   icon: const Icon(
-            //        Icons.camera,
-            //        color: Colors.red,
-            // ),
-            // iconSize: 36,
-            // ),
-            // ),
+             child: Container(
+               padding: EdgeInsets.symmetric(horizontal: 20,),
+               child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height*0.4,
+                 child: AspectRatio(
+                             aspectRatio: cameraController!.value.aspectRatio,
+                 child: CameraPreview(cameraController!),
+                        ),
+               ),
+             ),
+       
+           ),
           ],
         ),
       ),
@@ -258,13 +258,14 @@ Future<void> _setupCameraController() async {
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 91, 106, 234),
+                      //color: const Color.fromARGB(255, 91, 106, 234),
+                      color:const Color(0xFFEDEDED),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: const Text(
                       "You're leading a project, and a key team member unexpectedly takes leave, causing delays. How would you handle the situation to keep the project on track?",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         height: 1.4,
                       ),
@@ -272,7 +273,7 @@ Future<void> _setupCameraController() async {
                     ),
                   ),
 
-                  const SizedBox(height: 300),
+                  const SizedBox(height: 360),
 
                   // Recording button
                   ElevatedButton.icon(
@@ -283,7 +284,7 @@ Future<void> _setupCameraController() async {
                     ),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
-                      backgroundColor: Colors.white,
+                      backgroundColor: Color(0xFFBEE9EC),
                       textStyle: const TextStyle(fontSize: 20),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
@@ -323,11 +324,11 @@ Future<void> _setupCameraController() async {
                             print("\n\n\nFile does not exist at: $recordingPath \n\n\n\n");
                            }
                           },
-                          icon: Icon(Icons.play_arrow, color: Colors.white),
+                          icon: Icon(Icons.play_arrow, color: Colors.black54),
                           label: Text('Play Recording'),
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Color.fromARGB(255, 91, 106, 234),
+                            foregroundColor: Colors.black,
+                            backgroundColor: Color(0xFFEDEDED),
                             textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
                               vertical: 16,
@@ -384,11 +385,11 @@ Future<void> _setupCameraController() async {
                               );
                             }
                           },
-                          icon: Icon(Icons.visibility, color: Colors.white),
+                          icon: Icon(Icons.visibility, color: Colors.black54),
                           label: Text('See Transcription'),
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Color.fromARGB(255, 91, 106, 234),
+                            foregroundColor: Colors.black,
+                            backgroundColor: Color(0xFFEDEDED),
                             textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
                               vertical: 16,

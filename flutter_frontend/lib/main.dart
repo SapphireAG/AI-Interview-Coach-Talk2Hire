@@ -1,3 +1,4 @@
+import 'package:flutter_application_2/landing_page.dart';
 import 'package:flutter_application_2/questions_page.dart';
 // import 'package:flutter_frontend/questions_page.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         '/questions_screen': (context) => const QuestionsPage(),
         '/questions_page': (context) => const Quiz(),
-        '/login_page':(context)=> const LoginPage()
+        '/login_page':(context)=> const LoginPage(),
+        '/landing_page':(context)=> const LandingPage(username: '',)
       },
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_2/landing_page.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
   @override
@@ -151,7 +151,13 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 _getLoginInfo();
-                 Navigator.pushNamed(context, '/questions_screen');
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => LandingPage(username: _usernameController.text),
+                  ),
+                );
+                // Navigator.pushNamed(context, '/questions_screen');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(255, 190, 233, 236),
