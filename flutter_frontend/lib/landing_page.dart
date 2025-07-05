@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'dart:ui';
-import 'package:flutter_application_2/login_page.dart';
+//import 'dart:ui';
+//import 'package:flutter_application_2/login_page.dart';
 class LandingPage extends StatefulWidget {
   final String username;
   const LandingPage({super.key,required this.username});
@@ -32,11 +32,11 @@ class LandingPageState extends State<LandingPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
     _autoScrollTimer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
-        int nextpage = (_currentPage + 1) % features.length;
-        print("Auto-scroll to page $nextpage");
+        int nextpage = (_currentPage + 1) % features.length;  //autoscroll
+        //print("Auto-scroll to page $nextpage");
         _pageController.animateToPage(
           nextpage,
-          duration: Duration(milliseconds:1000),
+          duration: Duration(milliseconds:1400),
           curve: Curves.easeInOut,
         );
       }
@@ -112,7 +112,7 @@ class LandingPageState extends State<LandingPage> {
                 ),
                 child:  Text(
                   
-                  "Hi ${widget.username}, \nWelcome to the start of your new journey!\nFrom Berozgaar --> Rozgaar",
+                  "Hi ${widget.username}, \nWelcome to the start of your new journey!\nFrom Berozgaar to Rozgaar",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),
                 ),
@@ -156,7 +156,7 @@ class LandingPageState extends State<LandingPage> {
                   },
                   itemCount: features.length,
                   itemBuilder: (context, index) {
-                    return _buildFeatureCard(features[index]);
+                    return _buildFeatureCard(features[index],index);
                   },
                 ),
               ),
@@ -168,7 +168,7 @@ class LandingPageState extends State<LandingPage> {
                 icon:Icon(Icons.arrow_forward),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
-                  backgroundColor: Color(0xFF06B2C8),
+                  backgroundColor: Color(0xFFBEE9EC) ,
                   padding: const EdgeInsets.symmetric(
                                 vertical: 16,
                                 horizontal: 12,
@@ -187,24 +187,75 @@ class LandingPageState extends State<LandingPage> {
       ),
     );
   }
+  final List<Color> colors= [
+    Color(0xFF48b8d0),
+    Color(0xFF62c3d7),
+    Color(0xFF7bcfde),
+    Color(0xFF94dae4),
+    Color(0xFFaee5eb),
+    Color(0xFFc7f1f2)
 
-  Widget _buildFeatureCard(String text) {
+  ];
+    final List<Image> img= [
+     Image.asset('assets/voice-message.png'),
+     Image.asset('assets/face_recog.png'),
+     Image.asset('assets/feedback.png'),
+     Image.asset('assets/transcription.png'),
+     Image.asset('assets/personalq.png'),
+     Image.asset('assets/analysis.png'),
+
+  ];
+  Widget _buildFeatureCard(String text,int index) {
+    final parts = text.split('\n\n');
+    final title = parts[0];
+    final body = parts.length > 1 ? parts[1] : '';
+
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: Container(
         padding: const EdgeInsets.fromLTRB(20,20,20,20),
         decoration: BoxDecoration(
-         // color: Color.fromARGB(255, 237, 237, 237),
-         color: Color.fromARGB(255, 97, 97, 97),
+         color: colors[index%colors.length],
+         
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(color: Colors.white, fontSize: 18),
+        
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height:40,
+              width:40, 
+              child: img[index%img.length]),
+              //const SizedBox(height: 2),
+              Expanded(
+            child: Center(
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "$title\n\n",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: body,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }
