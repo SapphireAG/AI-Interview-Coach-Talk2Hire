@@ -150,7 +150,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                               child: Row(
                               children:[
                                 Icon(Icons.person,size:28),
-                                Text(
+                                Text( 
                                 "     Personal Questions",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.black),
