@@ -2,15 +2,30 @@ import 'package:flutter/material.dart';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({super.key});
+
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
+  // These will be replaced by LLM-generated feedback
+  String performanceText =
+      "Your answer was clear and confident, but you hesitated a little in parts. Ending with a strong conclusion will make your point more memorable.";
+
+  String improvementText =
+      "Try adding a real-world example to make your answer more compelling. A brief summary at the end will reinforce your key message.";
+
+  // TO BE REPLACED WITH LLM GENERATED FEEDBACK LATER
+
+  //   setState(() {
+  //   performanceText = llmResponse["performance"];
+  //   improvementText = llmResponse["improvement"];
+  // });
+
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 249, 250, 251),
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 249, 250, 251),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -18,13 +33,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Center(
-                child: Text( 
+                child: Text(
                   "Question-Wise\nFeedback Insights",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 100 , 92 , 92),
+                    color: Color.fromARGB(255, 100, 92, 92),
                   ),
                 ),
               ),
@@ -37,7 +52,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 237, 237, 237),
+                  color: const Color.fromARGB(255, 237, 237, 237),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
@@ -64,9 +79,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              _feedbackCard(
-                "Your answer was clear and confident, but you hesitated a little in parts. Ending with a strong conclusion will make your point more memorable.",
-              ),
+              _buildFeedbackCard(performanceText),
+
               const SizedBox(height: 30),
 
               // Suggested Improvements
@@ -82,9 +96,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              _feedbackCard(
-                "Try adding a real-world example to make your answer more compelling. A brief summary at the end will reinforce your key message.",
-              ),
+              _buildFeedbackCard(improvementText),
             ],
           ),
         ),
@@ -92,11 +104,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
     );
   }
 
-  Widget _feedbackCard(String message) {
+  // Feedback Card Builder Function
+  Widget _buildFeedbackCard(String message) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 237, 237, 237),
+        color: const Color.fromARGB(255, 237, 237, 237),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
