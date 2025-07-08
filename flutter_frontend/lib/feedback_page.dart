@@ -22,13 +22,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   "Question-Wise\nFeedback Insights",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 100 , 92 , 92),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
               // Question number tag
               Container(
@@ -43,9 +43,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 child: const Text(
                   "Question 3",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 25,
                     color: Color.fromARGB(255, 90, 60, 9),
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -57,8 +57,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 child: Text(
                   "Performance Breakdown",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 100, 92, 92),
                   ),
                 ),
               ),
@@ -74,8 +75,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 child: Text(
                   "Suggested Improvements",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 100, 92, 92),
                   ),
                 ),
               ),
@@ -94,19 +96,19 @@ class _FeedbackPageState extends State<FeedbackPage> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Color(0xFF7A87F9),
+        color: Color.fromARGB(255, 237, 237, 237),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.question_mark_rounded, color: Colors.white),
+          const Icon(Icons.question_mark_rounded, color: Colors.black),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               message,
               style: const TextStyle(
-                color: Colors.white,
+                color: Color.fromARGB(255, 100, 92, 92),
                 fontSize: 15,
                 height: 1.4,
               ),
