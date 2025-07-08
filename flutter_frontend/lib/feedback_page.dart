@@ -24,7 +24,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 100 , 92 , 92),
                   ),
                 ),
               ),
@@ -37,14 +37,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: Color(0xFF7A87F9),
+                  color: Color.fromARGB(255, 237, 237, 237),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
                   "Question 3",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 90, 60, 9),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
