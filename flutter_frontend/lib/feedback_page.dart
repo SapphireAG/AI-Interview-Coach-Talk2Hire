@@ -46,47 +46,46 @@ class _FeedbackPageState extends State<FeedbackPage> {
               const SizedBox(height: 30),
 
               // Question number tag
-              
               Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    // Back Arrow (left end)
-    IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        // Handle back navigation
-        print("Back pressed");
-      },
-    ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Back Arrow (left end)
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      // Handle back navigation
+                    },
+                  ),
 
-    // Question Label (center)
-    Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 237, 237, 237),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Text(
-        "Question 3",
-        style: TextStyle(
-          fontSize: 25,
-          color: Color.fromARGB(255, 90, 60, 9),
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ),
+                  // Question Label (center)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 237, 237, 237),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Text(
+                      "Question 3",
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Color.fromARGB(255, 90, 60, 9),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
 
-    // Forward Arrow (right end)
-    IconButton(
-      icon: const Icon(Icons.arrow_forward),
-      onPressed: () {
-        // Handle forward navigation
-        print("Forward pressed");
-      },
-    ),
-  ],
-),
-
+                  // Forward Arrow (right end)
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: () {
+                      // Handle forward navigation
+                    },
+                  ),
+                ],
+              ),
 
               const SizedBox(height: 30),
 
