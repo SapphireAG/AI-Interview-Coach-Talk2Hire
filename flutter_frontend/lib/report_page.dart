@@ -21,7 +21,7 @@ class _ReportPageState extends State<ReportPage> {
             children: [
               // Top Row: Menu icon, Welcome Text, Profile icon
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Menu Icon (Top Left)
                   const Icon(
@@ -35,9 +35,9 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Welcome Back ${widget.username}!",
+                        "Welcome Back\n${widget.username}!",
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 100, 92, 92),
                         ),
@@ -67,7 +67,7 @@ class _ReportPageState extends State<ReportPage> {
                   ),
                   SizedBox(width: 4),
                   Text(
-                    "3-day streak",
+                    "3 days",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -77,29 +77,29 @@ class _ReportPageState extends State<ReportPage> {
                 ],
               ),
 
-              const SizedBox(height: 30),
+        
 
-              // Grid of 4 stat cards
+              
               const SizedBox(height: 30),
 
               // Fixed 2x2 stat grid using Rows
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildStatCard("Box 1"),
-                        _buildStatCard("Box 2"),
+                        _buildStatCard("Questions Attempted\nThis Week"),
+                        _buildStatCard("Top Performing\nArea"),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildStatCard("Box 3"),
-                        _buildStatCard("Box 4"),
+                        _buildStatCard("Your Weekly\nHigh Score"),
+                        _buildStatCard("Dominant Emotion\nThis Week"),
                       ],
                     ),
                   ],
@@ -114,28 +114,21 @@ class _ReportPageState extends State<ReportPage> {
 
   Widget _buildStatCard(String label) {
     return Container(
-      width: 100, // Adjust to fit your design
-      height: 100,
-      padding: const EdgeInsets.all(12),
+      width: 150,
+      height: 150,
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color.fromARGB(255, 237, 237, 237),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(13),
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
-        ],
       ),
       child: Center(
         child: Text(
           label,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 90, 60, 9),
           ),
         ),
       ),
