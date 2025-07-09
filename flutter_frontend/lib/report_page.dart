@@ -35,7 +35,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Welcome Back\n${widget.username}!",
+                        "Welcome Back ${widget.username}!",
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -116,17 +116,18 @@ class _ReportPageState extends State<ReportPage> {
     return Container(
       width: 150,
       height: 150,
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 237, 237, 237),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Center(
+      child: Align(
+      alignment: Alignment.topLeft,
         child: Text(
           label,
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.start,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 90, 60, 9),
           ),
