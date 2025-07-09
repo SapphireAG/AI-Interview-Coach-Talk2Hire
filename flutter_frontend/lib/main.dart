@@ -5,7 +5,10 @@ import 'package:flutter_application_2/questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_application_2/login_page.dart';
+import 'package:flutter_application_2/report_page.dart';
 import 'questions_screen.dart';
+import 'feedback_page.dart';
+import 'report_page.dart';
 
 // void main() async{
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +57,6 @@ import 'questions_screen.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: FeedbackPage(),
+    home: ReportPage(),
   ));
 }
