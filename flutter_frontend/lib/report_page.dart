@@ -3,7 +3,7 @@ import 'dart:async';
 
 class ReportPage extends StatefulWidget {
   final String username;
-  const ReportPage({super.key,required this.username});
+  const ReportPage({super.key, required this.username});
 
   @override
   State<ReportPage> createState() => _ReportPageState();
@@ -24,7 +24,11 @@ class _ReportPageState extends State<ReportPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Menu Icon (Top Left)
-                  const Icon(Icons.arrow_back_ios, size:25, color: Color.fromARGB(255, 100, 92, 92)),
+                  const Icon(
+                    Icons.arrow_back_ios,
+                    size: 25,
+                    color: Color.fromARGB(255, 100, 92, 92),
+                  ),
 
                   // Welcome Text (Top Center)
                   Expanded(
@@ -73,8 +77,53 @@ class _ReportPageState extends State<ReportPage> {
                 ],
               ),
 
-              // ...rest of your content below
+              const SizedBox(height: 30),
+
+              // Grid of 4 stat cards
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 1,
+                  children: [
+                    _buildStatCard("Questions Attempted\nThis Week"),
+                    _buildStatCard("Top Performing\nArea"),
+                    _buildStatCard("Your Weekly\nHigh Score"),
+                    _buildStatCard("Dominant Emotion\nThis Week"),
+                  ],
+                ),
+              ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatCard(String title) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.15),
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+            color: Color.fromARGB(255, 100, 92, 92),
           ),
         ),
       ),
