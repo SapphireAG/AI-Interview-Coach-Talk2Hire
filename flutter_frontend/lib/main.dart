@@ -57,6 +57,6 @@ import 'report_page.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: ReportPage(),
+    home: ReportPage(username: ''),
   ));
 }

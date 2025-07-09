@@ -108,7 +108,7 @@ class LandingPageState extends State<LandingPage> {
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color:Color.fromARGB(255, 237, 237, 237),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20), 
                 ),
                 child:  Text(
                   
