@@ -80,17 +80,28 @@ class _ReportPageState extends State<ReportPage> {
               const SizedBox(height: 30),
 
               // Grid of 4 stat cards
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 1,
+              const SizedBox(height: 30),
+
+              // Fixed 2x2 stat grid using Rows
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
                   children: [
-                    _buildStatCard("Questions Attempted\nThis Week"),
-                    _buildStatCard("Top Performing\nArea"),
-                    _buildStatCard("Your Weekly\nHigh Score"),
-                    _buildStatCard("Dominant Emotion\nThis Week"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildStatCard("Box 1"),
+                        _buildStatCard("Box 2"),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildStatCard("Box 3"),
+                        _buildStatCard("Box 4"),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -101,29 +112,30 @@ class _ReportPageState extends State<ReportPage> {
     );
   }
 
-  Widget _buildStatCard(String title) {
+  Widget _buildStatCard(String label) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      width: 100, // Adjust to fit your design
+      height: 100,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.15),
-            spreadRadius: 1,
+            color: Colors.black.withAlpha(13),
             blurRadius: 8,
-            offset: const Offset(0, 3),
+            offset: Offset(0, 2),
           ),
         ],
       ),
-      child: Align(
-        alignment: Alignment.topLeft,
+      child: Center(
         child: Text(
-          title,
+          label,
+          textAlign: TextAlign.center,
           style: const TextStyle(
-            fontWeight: FontWeight.w600,
             fontSize: 16,
-            color: Color.fromARGB(255, 100, 92, 92),
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
           ),
         ),
       ),
