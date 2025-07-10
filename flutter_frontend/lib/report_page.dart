@@ -178,26 +178,33 @@ class _ReportPageState extends State<ReportPage> {
                           ],
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              featureIcons[features[index]] ?? '',
-                              height: 40,
-                              width: 40,
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Text(
-                                features[index],
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 90, 60, 9),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Row(
+      children: [
+        Image.asset(
+          featureIcons[features[index]] ?? '',
+          height: 40,
+          width: 40,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            features[index],
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 90, 60, 9),
+            ),
+          ),
+        ),
+      ],
+    ),
+    // Optional: add extra space below if needed
+  ],
+),
+
                       ),
                     );
                   },
