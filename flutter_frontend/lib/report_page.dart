@@ -15,12 +15,9 @@ class _ReportPageState extends State<ReportPage> {
   late Timer _autoScrollTimer;
 
   final List<String> features = [
-    'Sentiment Analysis\nAlign tone and intent like a pro.',
-    'Facial Expression Analysis\nWe decode expressions too.',
-    'Targeted Feedback\nActionable insights on all fronts.',
-    'Transcription\nReplay, reflect, and rise stronger.',
-    'Personalized Questions\nWeak in ML? We got your back!',
-    'Analytics\nTrack your progress and stay motivated.',
+    'Technical Questions',
+    'Personalized Questions',
+    'Scenario-Based Questions',
   ];
 
   @override
@@ -144,9 +141,9 @@ class _ReportPageState extends State<ReportPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Features",
+                  "TODAY'S ACTIVITY",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 90, 60, 9),
                   ),
@@ -157,7 +154,7 @@ class _ReportPageState extends State<ReportPage> {
 
               // Auto-scroll carousel
               SizedBox(
-                height: 140,
+                height: 150,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: features.length,
@@ -166,7 +163,7 @@ class _ReportPageState extends State<ReportPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 98, 195),
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(color: Colors.black12, blurRadius: 6),
