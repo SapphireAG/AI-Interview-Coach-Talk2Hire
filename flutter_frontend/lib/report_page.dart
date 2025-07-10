@@ -10,6 +10,41 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
+  final PageController _pageController = PageController(viewportFraction: 0.85);
+  int _currentPage = 0;
+  late Timer _autoScrollTimer;
+
+  final List<String> features = [
+    'Sentiment Analysis\nAlign tone and intent like a pro.',
+    'Facial Expression Analysis\nWe decode expressions too.',
+    'Targeted Feedback\nActionable insights on all fronts.',
+    'Transcription\nReplay, reflect, and rise stronger.',
+    'Personalized Questions\nWeak in ML? We got your back!',
+    'Analytics\nTrack your progress and stay motivated.',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _autoScrollTimer = Timer.periodic(Duration(seconds: 4), (timer) {
+      if (_pageController.hasClients) {
+        _currentPage = (_currentPage + 1) % features.length;
+        _pageController.animateToPage(
+          _currentPage,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _autoScrollTimer.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +70,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Welcome Back ${widget.username}!",
+                        "Welcome Back\n${widget.username}!",
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -77,9 +112,6 @@ class _ReportPageState extends State<ReportPage> {
                 ],
               ),
 
-        
-
-              
               const SizedBox(height: 30),
 
               // Fixed 2x2 stat grid using Rows
@@ -105,6 +137,54 @@ class _ReportPageState extends State<ReportPage> {
                   ],
                 ),
               ),
+
+              const SizedBox(height: 40),
+
+              // Auto-scroll carousel title (optional)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Features",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 90, 60, 9),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Auto-scroll carousel
+              SizedBox(
+                height: 140,
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: features.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(color: Colors.black12, blurRadius: 6),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          features[index],
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -122,7 +202,7 @@ class _ReportPageState extends State<ReportPage> {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Align(
-      alignment: Alignment.topLeft,
+        alignment: Alignment.topLeft,
         child: Text(
           label,
           textAlign: TextAlign.start,
