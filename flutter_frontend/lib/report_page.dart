@@ -143,7 +143,7 @@ class _ReportPageState extends State<ReportPage> {
                 child: Text(
                   "TODAY'S ACTIVITY",
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 90, 60, 9),
                   ),
@@ -163,7 +163,7 @@ class _ReportPageState extends State<ReportPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 255, 98, 195),
+                          color: Color.fromARGB(255, 98, 195, 215),
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(color: Colors.black12, blurRadius: 6),
@@ -173,10 +173,10 @@ class _ReportPageState extends State<ReportPage> {
                         child: Text(
                           features[index],
                           style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black87,
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 90, 60, 9),
                           ),
-                        ),
+                        )
                       ),
                     );
                   },
