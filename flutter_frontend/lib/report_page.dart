@@ -20,6 +20,12 @@ class _ReportPageState extends State<ReportPage> {
     'Scenario-Based Questions',
   ];
 
+  final Map<String, String> featureIcons = {
+    'Technical Questions': 'assets/tech.png',
+    'Personalized Questions': 'assets/personal.png',
+    'Scenario-Based Questions': 'assets/scenario.png',
+  };
+
   @override
   void initState() {
     super.initState();
@@ -41,6 +47,8 @@ class _ReportPageState extends State<ReportPage> {
     _autoScrollTimer.cancel();
     super.dispose();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +75,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Welcome Back\n${widget.username}!",
+                        "Welcome ${widget.username}!",
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -163,20 +171,33 @@ class _ReportPageState extends State<ReportPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 98, 195, 215),
+                          color: Color.fromARGB(255, 123, 207, 222),
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(color: Colors.black12, blurRadius: 6),
                           ],
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: Text(
-                          features[index],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Color.fromARGB(255, 90, 60, 9),
-                          ),
-                        )
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              featureIcons[features[index]] ?? '',
+                              height: 40,
+                              width: 40,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                features[index],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 90, 60, 9),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
