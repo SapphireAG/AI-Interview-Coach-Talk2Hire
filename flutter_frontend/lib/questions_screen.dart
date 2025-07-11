@@ -38,21 +38,15 @@ class _QuestionsPageState extends State<QuestionsPage> {
         ),
         backgroundColor: Color.fromARGB(255, 249, 250, 251),
 
-        leading: PopupMenuButton<String>(
-          icon: Icon(Icons.menu, color: Colors.black38, size: 35),
-          onSelected: (value) {
-            if (value == 'performance') {
-              // Handle navigation or action
-              print("Performance Dashboard clicked");
-            }
-          },
-          itemBuilder:
-              (BuildContext context) => [
-                const PopupMenuItem<String>(
-                  value: 'performance',
-                  child: Text('Performance Dashboard'),
-                ),
-              ],
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                icon: Icon(Icons.menu, color: Colors.black38, size: 35),
+                iconSize: 40,
+                onPressed: () {
+                  Scaffold.of(context).openDrawer(); // <-- THIS works now
+                },
+              ),
         ),
 
         actions: [
@@ -65,6 +59,38 @@ class _QuestionsPageState extends State<QuestionsPage> {
             },
           ),
         ],
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              height: 100, // Reduced height from default 200
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 190, 233, 236),
+              ),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 100, 92, 92),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.analytics),
+              title: Text('Performance Dashboard'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.pushNamed(context, '/report_page');
+              },
+            ),
+          ],
+        ),
       ),
 
       body: Center(

@@ -10,36 +10,36 @@ import 'questions_screen.dart';
 import 'feedback_page.dart';
 import 'report_page.dart';
 
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await GlobalAudioScope().ensureInitialized();
-  runApp(MyApp());
-}  
+// void main() async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await GlobalAudioScope().ensureInitialized();
+//   runApp(MyApp());
+// }  
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
       
-      title: 'Interview App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const LoginPage(),
-        '/questions_screen': (context) => const QuestionsPage(),
-        '/questions_page': (context) => const Quiz(),
-        '/login_page':(context)=> const LoginPage(),
-        '/landing_page':(context)=> const LandingPage(username: '',),
-        '/report_page':(context)=> const ReportPage(username: '',)
-      },
-    );
-  }
-}
+//       title: 'Interview App',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => const LoginPage(),
+//         '/questions_screen': (context) => const QuestionsPage(),
+//         '/questions_page': (context) => const Quiz(),
+//         '/login_page':(context)=> const LoginPage(),
+//         '/landing_page':(context)=> const LandingPage(username: '',),
+//         '/report_page':(context)=> const ReportPage(username: '',)
+//       },
+//     );
+//   }
+// }
 
 // void main() {
 //   runApp(MaterialApp(
@@ -48,12 +48,12 @@ class MyApp extends StatelessWidget {
 //   ));
 // }
 
-// void main() {
-//   runApp(MaterialApp(
-//     debugShowCheckedModeBanner: false,
-//     home: QuestionsPage(),
-//   ));
-// }
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: QuestionsPage(),
+  ));
+}
 
 // void main() {
 //   runApp(MaterialApp(
