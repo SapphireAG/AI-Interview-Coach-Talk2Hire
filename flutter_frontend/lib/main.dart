@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         '/questions_page': (context) => const Quiz(),
         '/login_page':(context)=> const LoginPage(),
         '/landing_page':(context)=> const LandingPage(username: '',),
-        '/report_page':(context)=> const ReportPage(username: '',)
+        '/report_page':(context)=> const ReportPage()
       },
     );
   }
