@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class ReportPage extends StatefulWidget {
-  final String username;
-  const ReportPage({super.key, required this.username});
+  const ReportPage({super.key});
 
   @override
   State<ReportPage> createState() => _ReportPageState();
@@ -22,7 +21,7 @@ class _ReportPageState extends State<ReportPage> {
 
   final Map<String, String> featureIcons = {
     'Technical Questions': 'assets/tech.png',
-    'Personalized Questions': 'assets/personal.png',
+    'Personal Questions': 'assets/personal.png',
     'Scenario-Based Questions': 'assets/scenario.png',
   };
 
@@ -75,7 +74,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Welcome ${widget.username}!",
+                        "Catch Up on Your Progress",
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
