@@ -38,7 +38,7 @@ Future<void> sendImage(File imageFile) async {
   final response = await request.send();
   final responseBody = await response.stream.bytesToString();
 
-  print("Emotion prediction: $responseBody");
+  print("Emotion prediction: $responseBody"); 
 }
 Timer? periodicTimer;
 void startCapturingPeriodically() {

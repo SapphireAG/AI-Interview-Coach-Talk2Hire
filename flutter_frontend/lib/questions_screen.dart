@@ -14,43 +14,39 @@ void _startMock() {
   print("Mock started");
 }
 
-
 class _QuestionsPageState extends State<QuestionsPage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
-        toolbarHeight:100,
+        toolbarHeight: 100,
         title: Padding(
           padding: const EdgeInsets.only(top: 21.0),
-          child:Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-              10.0,
-            ), 
-            // Adjust the radius as needed
-            child: Image.asset(
-              'assets/NEW_logo.png',
-              height: 80.0,
-              width: 150.0,
-              //scale: 1.0,
-              fit: BoxFit.contain,
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              // Adjust the radius as needed
+              child: Image.asset(
+                'assets/NEW_logo.png',
+                height: 80.0,
+                width: 150.0,
+                //scale: 1.0,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
-        ),
         backgroundColor: Color.fromARGB(255, 249, 250, 251),
 
-        leading: IconButton(
-          icon: Icon(Icons.menu,color: Colors.black38,size: 35,),
-          iconSize: 40,
-          color: Colors.white,
-          onPressed: () {
-            // Handle menu action
-          },
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                icon: Icon(Icons.menu, color: Colors.black38, size: 35),
+                iconSize: 40,
+                onPressed: () {
+                  Scaffold.of(context).openDrawer(); // <-- THIS works now
+                },
+              ),
         ),
 
         actions: [
@@ -64,14 +60,45 @@ class _QuestionsPageState extends State<QuestionsPage> {
           ),
         ],
       ),
-     
-      body: Center(
 
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              height: 100, // Reduced height from default 200
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 190, 233, 236),
+              ),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 100, 92, 92),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.analytics),
+              title: Text('Performance Dashboard'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.pushNamed(context, '/report_page');
+              },
+            ),
+          ],
+        ),
+      ),
+
+      body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(bottom:120),
+          padding: const EdgeInsets.only(bottom: 120),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-          
+
             children: [
               Container(
                 height: 400.0,
@@ -88,7 +115,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     ),
                   ],
                 ),
-          
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -97,7 +124,10 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     Container(
                       height: 50.0,
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -108,7 +138,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
                           alignment: Alignment.center,
                           value: selectedCategory,
                           dropdownColor:
-                              Colors.white, // Background color for dropdown items
+                              Colors
+                                  .white, // Background color for dropdown items
                           icon: Icon(
                             Icons.arrow_drop_down,
                             color: Colors.black,
@@ -117,49 +148,46 @@ class _QuestionsPageState extends State<QuestionsPage> {
                             DropdownMenuItem(
                               alignment: Alignment.center,
                               value: "Scenario-Based Questions",
-                               child: Row(
-                              children:[
-                                Icon(Icons.chat_bubble,size:28),
-                                Text(
-                                "     Scenario Based Questions",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.chat_bubble, size: 28),
+                                  Text(
+                                    "     Scenario Based Questions",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              ],
-                              )
                             ),
                             DropdownMenuItem(
                               alignment: Alignment.center,
                               value: "Technical Questions",
-                              
-                               child: Row(
-                              children:[
-                                Icon(Icons.computer,size:28),
-                                Text(
-                                
-                                "     Technical Questions",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black),
+
+                              child: Row(
+                                children: [
+                                  Icon(Icons.computer, size: 28),
+                                  Text(
+                                    "     Technical Questions",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              ],
-                              )
                             ),
                             DropdownMenuItem(
                               alignment: Alignment.center,
                               value: "Personal Questions",
                               child: Row(
-                              children:[
-                                Icon(Icons.person,size:28),
-                                Text(
-                                "     Personal Questions",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black),
+                                children: [
+                                  Icon(Icons.person, size: 28),
+                                  Text(
+                                    "     Personal Questions",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              ],
-                              )
-                        
                             ),
-          
                           ],
                           onChanged: (String? newValue) {
                             setState(() {
@@ -169,12 +197,15 @@ class _QuestionsPageState extends State<QuestionsPage> {
                         ),
                       ),
                     ),
-          
+
                     SizedBox(height: 30),
-                    
+
                     Row(
                       children: [
-                        Icon(Icons.question_answer_outlined,color: Colors.black54),
+                        Icon(
+                          Icons.question_answer_outlined,
+                          color: Colors.black54,
+                        ),
                         Text(
                           '   Select the number of Questions',
                           style: TextStyle(
@@ -188,16 +219,16 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     SizedBox(height: 20),
                     _buildRadioOption(5, "5 Questions"),
                     SizedBox(height: 10),
-          
+
                     _buildRadioOption(10, "10 Questions"),
                     SizedBox(height: 10),
                     _buildRadioOption(15, "15 Questions"),
-          
+
                     SizedBox(height: 10), // Spacing before dropdown box
                   ],
                 ),
               ),
-          
+
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -225,50 +256,52 @@ class _QuestionsPageState extends State<QuestionsPage> {
   }
 
   Widget _buildRadioOption(int value, String text) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(12),
-    onTap: () {
-      setState(() {
-        _selectedValue = value;
-      });
-    },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Radio(
-            value: value,
-            groupValue: _selectedValue,
-            onChanged: (int? newValue) {
-              setState(() {
-                _selectedValue = newValue!;
-              });
-            },
-            fillColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 97, 97, 97)),
-          ),
-          Container(
-            height: 40.0,
-            width: 200.0,
-            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        setState(() {
+          _selectedValue = value;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Radio(
+              value: value,
+              groupValue: _selectedValue,
+              onChanged: (int? newValue) {
+                setState(() {
+                  _selectedValue = newValue!;
+                });
+              },
+              fillColor: WidgetStateProperty.all<Color>(
+                const Color.fromARGB(255, 97, 97, 97),
+              ),
             ),
-            child: Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
+            Container(
+              height: 40.0,
+              width: 200.0,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

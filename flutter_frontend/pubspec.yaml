@@ -74,6 +74,9 @@ flutter:
     - assets/transcription.png
     - assets/personalq.png
     - assets/analysis.png
+    - assets/tech.png
+    - assets/scenario.png
+    - assets/personal.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,16 +1,20 @@
+import 'package:flutter_application_2/feedback_page.dart';
 import 'package:flutter_application_2/landing_page.dart';
 import 'package:flutter_application_2/questions_page.dart';
 // import 'package:flutter_frontend/questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_application_2/login_page.dart';
+import 'package:flutter_application_2/report_page.dart';
 import 'questions_screen.dart';
+import 'feedback_page.dart';
+import 'report_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalAudioScope().ensureInitialized();
   runApp(MyApp());
-} 
+}  
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,7 +34,8 @@ class MyApp extends StatelessWidget {
         '/questions_screen': (context) => const QuestionsPage(),
         '/questions_page': (context) => const Quiz(),
         '/login_page':(context)=> const LoginPage(),
-        '/landing_page':(context)=> const LandingPage(username: '',)
+        '/landing_page':(context)=> const LandingPage(username: '',),
+        '/report_page':(context)=> const ReportPage()
       },
     );
   }
@@ -47,5 +52,12 @@ class MyApp extends StatelessWidget {
 //   runApp(MaterialApp(
 //     debugShowCheckedModeBanner: false,
 //     home: QuestionsPage(),
+//   ));
+// }
+
+// void main() {
+//   runApp(MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: ReportPage(username: 'jahnavi'),
 //   ));
 // }
