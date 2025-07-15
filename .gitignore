@@ -5,4 +5,5 @@ flutter_frontend/ios/
 flutter_frontend/macos/
 flutter_frontend/linux/ 
 backend/.venv/
+backend/.env/
 
