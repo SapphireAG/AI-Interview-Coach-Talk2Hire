@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/amangolani/AppDev/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/amangolani/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/flutter_frontend/android/app/.cxx/Debug/i3b2w551/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/amangolani/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/flutter_frontend/android/app/.cxx/Debug/i3b2w551/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

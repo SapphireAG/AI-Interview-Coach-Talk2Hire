@@ -1,0 +1,15 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml:1:1-44
+INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml:1:1-44
+	package
+		ADDED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml:1:11-42
+		INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml
+uses-sdk
+INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml
+INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/amangolani/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/android/src/main/AndroidManifest.xml

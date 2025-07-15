@@ -1,0 +1,2 @@
+/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/flutter_frontend/android/app/.cxx/Debug/i3b2w551/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/flutter_frontend/android/app/.cxx/Debug/i3b2w551/armeabi-v7a/CMakeFiles/rebuild_cache.dir
