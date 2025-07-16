@@ -149,7 +149,7 @@ class LandingPageState extends State<LandingPage> {
               // === Carousel of Features ===
               const SizedBox(height: 20),
               SizedBox(
-                height: 260,
+                height: 200,
                 child: PageView.builder(
                   controller: _pageController,
                   onPageChanged: (int index){
