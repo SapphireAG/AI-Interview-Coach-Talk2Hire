@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'questions_screen.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({super.key});
@@ -47,8 +48,6 @@ class _ReportPageState extends State<ReportPage> {
     super.dispose();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,10 +62,20 @@ class _ReportPageState extends State<ReportPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Menu Icon (Top Left)
-                  const Icon(
-                    Icons.arrow_back_ios,
-                    size: 25,
-                    color: Color.fromARGB(255, 100, 92, 92),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      size: 25,
+                      color: Color.fromARGB(255, 100, 92, 92),
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuestionsPage(),
+                        ),
+                      );
+                    },
                   ),
 
                   // Welcome Text (Top Center)
@@ -177,33 +186,32 @@ class _ReportPageState extends State<ReportPage> {
                           ],
                         ),
                         padding: const EdgeInsets.all(16),
-                      child: Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Row(
-      children: [
-        Image.asset(
-          featureIcons[features[index]] ?? '',
-          height: 40,
-          width: 40,
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            features[index],
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 90, 60, 9),
-            ),
-          ),
-        ),
-      ],
-    ),
-    // Optional: add extra space below if needed
-  ],
-),
-
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  featureIcons[features[index]] ?? '',
+                                  height: 40,
+                                  width: 40,
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Text(
+                                    features[index],
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 90, 60, 9),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Optional: add extra space below if needed
+                          ],
+                        ),
                       ),
                     );
                   },
