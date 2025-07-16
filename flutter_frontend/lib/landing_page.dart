@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'questions_screen.dart';
 //import 'dart:ui';
-//import 'package:flutter_application_2/login_page.dart';
+// import 'package:flutter_application_2/login_page.dart';
 class LandingPage extends StatefulWidget {
   final String username;
   const LandingPage({super.key,required this.username});
@@ -163,8 +164,14 @@ class LandingPageState extends State<LandingPage> {
               SizedBox(height: 20,),
               Center(
                 child: ElevatedButton.icon(
-                onPressed: ()=> Navigator.pushNamed(context,'/questions_screen', arguments: {'username': widget.username},), 
-                label: Text('Get Started!'), 
+                onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuestionsPage(username: widget.username),
+                      ),
+                    );
+                  },label: Text('Get Started!'), 
                 icon:Icon(Icons.arrow_forward),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,

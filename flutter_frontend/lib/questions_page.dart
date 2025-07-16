@@ -63,7 +63,7 @@ void startCapturingPeriodically() {
     final request = http.MultipartRequest('POST', uri);
     
     request.files.add(await http.MultipartFile.fromPath('file', filePath));
-    request.fields['username'] = widget.username;
+    request.fields['username'] = username;
 
     final response = await request.send();
  

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'questions_page.dart';
 
 class QuestionsPage extends StatefulWidget {
   final String username;
@@ -234,7 +235,12 @@ class _QuestionsPageState extends State<QuestionsPage> {
               ElevatedButton(
                 onPressed: () {
                   _startMock();
-                  Navigator.pushNamed(context, '/questions_page' , arguments: {'username': widget.username},);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Quiz(username: widget.username),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 190, 233, 236),
