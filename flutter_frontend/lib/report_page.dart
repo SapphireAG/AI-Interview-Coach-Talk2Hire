@@ -72,7 +72,7 @@ class _ReportPageState extends State<ReportPage> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuestionsPage(),
+                          builder: (context) => QuestionsPage(username: 'yourUsername'),
                         ),
                       );
                     },

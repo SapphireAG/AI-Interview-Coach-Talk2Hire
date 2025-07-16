@@ -10,8 +10,8 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 class Quiz extends StatefulWidget {
- 
-  const Quiz({super.key});
+  final String username;
+  const Quiz({super.key,required this.username});
   State<Quiz> createState() {
     return _QuizState();
   }
@@ -58,12 +58,13 @@ void startCapturingPeriodically() {
   });
 }
 // Function to upload the recording to FastAPI
-  Future<String?> uploadRecording(String filePath) async {
+  Future<String?> uploadRecording(String filePath, String username) async {
     final uri = Uri.parse("http://127.0.0.1:8000/upload-audio/");
     final request = http.MultipartRequest('POST', uri);
     
     request.files.add(await http.MultipartFile.fromPath('file', filePath));
- 
+    request.fields['username'] = widget.username;
+
     final response = await request.send();
  
     if (response.statusCode == 200) {
@@ -118,7 +119,7 @@ void startCapturingPeriodically() {
           recordingPath = filePath;
         });
 
-        final transcript = await uploadRecording(filePath);
+        final transcript = await uploadRecording(filePath, widget.username);
         if (transcript != null) {
           setState(() {
             _transcriptionText = transcript;

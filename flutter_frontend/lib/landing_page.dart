@@ -163,7 +163,7 @@ class LandingPageState extends State<LandingPage> {
               SizedBox(height: 20,),
               Center(
                 child: ElevatedButton.icon(
-                onPressed: ()=> Navigator.pushNamed(context,'/questions_screen'), 
+                onPressed: ()=> Navigator.pushNamed(context,'/questions_screen', arguments: {'username': widget.username},), 
                 label: Text('Get Started!'), 
                 icon:Icon(Icons.arrow_forward),
                 style: ElevatedButton.styleFrom(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class QuestionsPage extends StatefulWidget {
-  const QuestionsPage({super.key});
+  final String username;
+  const QuestionsPage({super.key, required this.username});
   @override
   State<QuestionsPage> createState() => _QuestionsPageState();
 }
@@ -233,7 +234,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               ElevatedButton(
                 onPressed: () {
                   _startMock();
-                  Navigator.pushNamed(context, '/questions_page');
+                  Navigator.pushNamed(context, '/questions_page' , arguments: {'username': widget.username},);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 190, 233, 236),
