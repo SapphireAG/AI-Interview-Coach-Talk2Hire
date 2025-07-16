@@ -4,7 +4,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
 
 # Import your document model(s)
-from models import MediaFile
+# from models import UserAudio
 from models import UserAudio  # <-- ADDED: new model to store username, audio path, and transcript
 
 # Load .env variables
@@ -24,6 +24,6 @@ db = client["InterviewCoachDB"]  # replace with your actual DB name if needed
 async def init_db():
     await init_beanie(
         database=db,
-        document_models=[MediaFile, UserAudio]  # <-- MODIFIED: include new UserAudio model
+        document_models=[UserAudio]  # <-- MODIFIED: include new UserAudio model
     )
     print("MongoDB initialized with Beanie")
