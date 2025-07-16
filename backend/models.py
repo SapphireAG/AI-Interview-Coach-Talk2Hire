@@ -1,13 +1,14 @@
 from beanie import Document
-from pydantic import BaseModel, Field
+from pydantic import Field
 from typing import Optional
 from datetime import datetime
 
 class UserAudio(Document):
-    username: str
-    audio_path: str
-    transcript: str
-    
+    username: str = Field(..., description="Username of the uploader")
+    audio_path: str = Field(..., description="Path to the saved audio file")
+    transcript: str = Field(..., description="Transcription of the audio file")
+    created_at: datetime = Field(default_factory=datetime.utcnow, description="Timestamp when the record was created")
 
     class Settings:
         name = "media_files"  # MongoDB collection name
+ 
