@@ -17,6 +17,19 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<dynamic>? questions;
+  int currentQuestionIndex=0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args != null && args is List) {
+      questions = args;
+      print("Received questions: $questions"); // Debug log
+    }
+  }
+
   final AudioRecorder audioRecorder = AudioRecorder();
   String? _transcriptionText;
   var activeScreen = 'previous-screen';
@@ -236,8 +249,8 @@ Future<void> _setupCameraController() async {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Text(
-                          'Question 3',
+                        child: Text(
+                          'Question ${currentQuestionIndex + 1}',
                           style: TextStyle(
                             fontSize: 25,
                             color: Colors.black,
@@ -246,10 +259,21 @@ Future<void> _setupCameraController() async {
                         ),
                       ),
                       IconButton(
-                      onPressed: () => Navigator.pushNamed(context, '/login_page'), 
-                      icon: const Icon(Icons.arrow_forward),
-                      iconSize: 28,
-                      ),
+  onPressed: () {
+    if (currentQuestionIndex < (questions?.length ?? 1) - 1) {
+      setState(() {
+        currentQuestionIndex++;
+      });
+    } else {
+      // Last question → go to login page
+      Navigator.pushNamed(context, '/login_page');
+    }
+  },
+  icon: const Icon(Icons.arrow_forward),
+  iconSize: 28,
+),
+
+
                     ],
                   ),
                   const SizedBox(height: 5),
@@ -262,15 +286,18 @@ Future<void> _setupCameraController() async {
                       color:const Color(0xFFEDEDED),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: const Text(
-                      "You're leading a project, and a key team member unexpectedly takes leave, causing delays. How would you handle the situation to keep the project on track?",
-                      style: TextStyle(
+                    child: Text(
+                      questions != null && questions!.isNotEmpty && currentQuestionIndex < questions!.length
+                      ? questions![currentQuestionIndex]["question_text"] ?? "No question text"
+                      : "No questions loaded.",
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         height: 1.4,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+                        ),
+                        textAlign: TextAlign.center,
+                        ),
+
                   ),
 
                   const SizedBox(height: 360),

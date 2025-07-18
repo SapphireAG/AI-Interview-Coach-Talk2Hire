@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class QuestionsPage extends StatefulWidget {
   const QuestionsPage({super.key});
@@ -231,23 +233,52 @@ class _QuestionsPageState extends State<QuestionsPage> {
 
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  _startMock();
-                  Navigator.pushNamed(context, '/questions_page');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 190, 233, 236),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                child: Text(
-                  'Start Mock Interview',
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Color.fromARGB(255, 90, 60, 9),
-                    fontStyle: FontStyle.normal,
-                  ),
-                ),
-              ),
+                onPressed: () async {
+          _startMock(); // You can keep or remove this depending on your logic
+
+    final response = await http.post(
+      Uri.parse("http://127.0.0.1:8000/get-questions"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "question_type": selectedCategory.contains("Scenario") ? "Scenario"
+                       : selectedCategory.contains("Technical") ? "Technical"
+                       : "Behavioral",
+        "count": _selectedValue,
+        "score": 8, // Replace with actual user score if needed
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      final List<dynamic> questions = json["questions"];
+
+      // Navigate to questions page with questions passed as arguments
+      Navigator.pushNamed(
+        context,
+        '/questions_page',
+        arguments: questions,
+      );
+    } else {
+      print("Failed to fetch questions: ${response.statusCode}");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Failed to load questions")),
+      );
+    }
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Color.fromARGB(255, 190, 233, 236),
+    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+  ),
+  child: Text(
+    'Start Mock Interview',
+    style: TextStyle(
+      fontSize: 22,
+      color: Color.fromARGB(255, 90, 60, 9),
+      fontStyle: FontStyle.normal,
+    ),
+  ),
+)
+,
             ],
           ),
         ),
