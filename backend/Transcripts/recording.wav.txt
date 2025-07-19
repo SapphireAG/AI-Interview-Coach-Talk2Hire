@@ -1,1 +1,1 @@
- Hello.
+ I am recording the audio to check the transcription model.
