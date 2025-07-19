@@ -31,22 +31,23 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginPage(),
-        '/questions_screen': (context) => const QuestionsPage(username: ''),
-        '/questions_page': (context) => const Quiz(username: ''),
+        '/questions_screen': (context) => const QuestionsPage(),
+        '/questions_page': (context) => const Quiz(username: '',),
         '/login_page':(context)=> const LoginPage(),
         '/landing_page':(context)=> const LandingPage(username: '',),
         '/report_page':(context)=> const ReportPage()
       },
+
     );
   }
 }
 
-// void main() {
+// void main() { 
 //   runApp(MaterialApp(
 //     debugShowCheckedModeBanner: false,
 //     home: LoginPage(),
 //   ));
-// }
+// } 
 
 // void main() {
 //   runApp(MaterialApp(
@@ -58,6 +59,6 @@ class MyApp extends StatelessWidget {
 // void main() {
 //   runApp(MaterialApp(
 //     debugShowCheckedModeBanner: false,
-//     home: ReportPage(username: 'jahnavi'),
+//     home: Quiz(username: '',),
 //   ));
 // }

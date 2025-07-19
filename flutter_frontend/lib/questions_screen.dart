@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'questions_page.dart';
 
 class QuestionsPage extends StatefulWidget {
-  final String username;
-  const QuestionsPage({super.key, required this.username});
+  
+  const QuestionsPage({super.key});
   @override
   State<QuestionsPage> createState() => _QuestionsPageState();
 }
@@ -13,7 +13,7 @@ int _selectedValue = 10; // Default selection
 
 void _startMock() {
   // Implement your mock start logic here
-  print("Mock started");
+  print("Mock started"); 
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
@@ -235,12 +235,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               ElevatedButton(
                 onPressed: () {
                   _startMock();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Quiz(username: widget.username),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/questions_page');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 190, 233, 236),

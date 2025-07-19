@@ -150,7 +150,7 @@ class LandingPageState extends State<LandingPage> {
               const SizedBox(height: 20),
               SizedBox(
                 height: 260,
-                child: PageView.builder(
+                child: PageView.builder( 
                   controller: _pageController,
                   onPageChanged: (int index){
                     _currentPage = index;
@@ -164,14 +164,8 @@ class LandingPageState extends State<LandingPage> {
               SizedBox(height: 20,),
               Center(
                 child: ElevatedButton.icon(
-                onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => QuestionsPage(username: widget.username),
-                      ),
-                    );
-                  },label: Text('Get Started!'), 
+                onPressed: ()=> Navigator.pushNamed(context,'/questions_screen'),
+                label: Text('Get Started!'), 
                 icon:Icon(Icons.arrow_forward),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,

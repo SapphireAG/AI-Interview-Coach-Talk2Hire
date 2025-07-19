@@ -22,7 +22,7 @@ class _ReportPageState extends State<ReportPage> {
 
   final Map<String, String> featureIcons = {
     'Technical Questions': 'assets/tech.png',
-    'Personal Questions': 'assets/personal.png',
+    'Personal Questions': 'assets/personalq.png',
     'Scenario-Based Questions': 'assets/scenario.png',
   };
 
@@ -83,7 +83,7 @@ class _ReportPageState extends State<ReportPage> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Catch Up on Your Progress",
+                        "Catch Up on Your       Progress",
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _ReportPageState extends State<ReportPage> {
                         _buildStatCard("Top Performing\nArea"),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -193,15 +193,15 @@ class _ReportPageState extends State<ReportPage> {
                               children: [
                                 Image.asset(
                                   featureIcons[features[index]] ?? '',
-                                  height: 40,
-                                  width: 40,
+                                  height: 30,
+                                  width: 30,
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Text(
                                     features[index],
                                     style: const TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromARGB(255, 90, 60, 9),
                                     ),

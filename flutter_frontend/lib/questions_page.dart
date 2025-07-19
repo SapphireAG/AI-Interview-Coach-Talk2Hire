@@ -325,7 +325,7 @@ Future<void> _setupCameraController() async {
                            }
                            else{
                             print("\n\n\nFile does not exist at: $recordingPath \n\n\n\n");
-                           }
+                           } 
                           },
                           icon: Icon(Icons.play_arrow, color: Colors.black54),
                           label: Text('Play Recording'),
