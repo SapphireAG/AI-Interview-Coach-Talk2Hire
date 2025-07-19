@@ -181,7 +181,7 @@ Future<void> _setupCameraController() async {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 150),
+            const SizedBox(height: 160),
             Transform.translate(
             offset: const Offset(0, -90),
              child: Container(
@@ -269,14 +269,14 @@ Future<void> _setupCameraController() async {
                       "You're leading a project, and a key team member unexpectedly takes leave, causing delays. How would you handle the situation to keep the project on track?",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 20,
                         height: 1.4,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
 
-                  const SizedBox(height: 320),
+                  const SizedBox(height: 360),
 
                   // Recording button
                   ElevatedButton.icon(
@@ -288,10 +288,10 @@ Future<void> _setupCameraController() async {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: Color(0xFFBEE9EC),
-                      textStyle: const TextStyle(fontSize: 15),
+                      textStyle: const TextStyle(fontSize: 20),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
-                        vertical: 10,
+                        vertical: 12,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -299,7 +299,7 @@ Future<void> _setupCameraController() async {
                     ),
                   ),
 
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 30),
                   if (recordingPath != null ) ...[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -332,9 +332,9 @@ Future<void> _setupCameraController() async {
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.black,
                             backgroundColor: Color(0xFFEDEDED),
-                            textStyle: const TextStyle(fontSize: 12),
+                            textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
-                              vertical: 10,
+                              vertical: 16,
                               horizontal: 12,
                             ),
                             shape: RoundedRectangleBorder(
@@ -393,9 +393,9 @@ Future<void> _setupCameraController() async {
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.black,
                             backgroundColor: Color(0xFFEDEDED),
-                            textStyle: const TextStyle(fontSize: 12),
+                            textStyle: const TextStyle(fontSize: 20),
                             padding: const EdgeInsets.symmetric(
-                              vertical: 10,
+                              vertical: 16,
                               horizontal: 12,
                             ),
                             shape: RoundedRectangleBorder(
