@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/landing_page.dart';
+import 'package:flutter_application_2/questions_page.dart';
+import 'package:flutter_application_2/questions_screen.dart';
+import 'package:http/http.dart' as http;
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
   @override
@@ -16,6 +20,22 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
     print("Password: $password");
   }
+
+Future<void> sendUsername(String username) async {
+  final uri = Uri.parse("http://127.0.0.1:8000/username/");
+  final response = await http.post(
+    uri,
+    body: {'username': username},
+  );
+
+  if (response.statusCode == 200) {
+   
+    print("Username sent successfully");
+  } else {
+    print("Username send failed");
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
       //       ),
       //     ),
       //   ),
-      // ),
+      // ), 
       
       body: Center(
         child: Column(
@@ -149,14 +169,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 _getLoginInfo();
+                await sendUsername(_usernameController.text); // Send username to backend
                 Navigator.push(
                 context,
                 MaterialPageRoute(
                 builder: (context) => LandingPage(username: _usernameController.text),
+                
                   ),
                 );
+
+              
                 // Navigator.pushNamed(context, '/questions_screen');
               },
               style: ElevatedButton.styleFrom(
