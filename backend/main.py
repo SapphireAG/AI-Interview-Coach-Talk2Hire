@@ -5,13 +5,20 @@ from torchvision import transforms
 from PIL import Image
 from pydantic import BaseModel
 import torch
-import shutil
+import shutil 
 import os
 from FER import ResEmoteNet
 from TranscriptionModel.transcript import transcribe_audio
 from feedbackModel.feedback_llm import run_feedback_pipeline
+from fastapi import Form
+from user_database.db import init_db
+import asyncio
 
 app = FastAPI()
+
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 #llm feedback struct
 class FeedbackRequest(BaseModel):
@@ -45,6 +52,11 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
+
+@app.post("/username/")
+async def upload_username(username: str = Form(...)):
+    # Optional: Save username to DB if you have a user collection
+    return {"message": f"Username '{username}' received."}
 
 @app.post("/predict-emotion")
 async def predict_emotion(file: UploadFile = File(...)):
