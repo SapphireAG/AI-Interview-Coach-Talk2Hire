@@ -5,13 +5,20 @@ from torchvision import transforms
 from PIL import Image
 from pydantic import BaseModel
 import torch
-import shutil
+import shutil 
 import os
 from FER import ResEmoteNet
 from TranscriptionModel.transcript import transcribe_audio
 from feedbackModel.feedback_llm import run_feedback_pipeline
+from fastapi import Form
+from user_database.db import init_db
+import asyncio
 
 app = FastAPI()
+
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 #llm feedback struct
 class FeedbackRequest(BaseModel):
