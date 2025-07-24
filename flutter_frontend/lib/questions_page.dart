@@ -10,14 +10,15 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+  final String username;
+  const Quiz({super.key,required this.username});
   State<Quiz> createState() {
     return _QuizState();
   }
 }
-
+ 
 class _QuizState extends State<Quiz> {
-  // final AudioRecorder audioRecorder = AudioRecorder();
+  final AudioRecorder audioRecorder = AudioRecorder();
   String? _transcriptionText;
   var activeScreen = 'previous-screen';
   switchScreen() {
@@ -28,7 +29,7 @@ class _QuizState extends State<Quiz> {
 Future<void> sendImage(File imageFile) async {
   final request = http.MultipartRequest(
     'POST',
-    Uri.parse('http://10.0.2.2:8000/predict-emotion/'),
+    Uri.parse('http://127.0.0.1:8000/predict-emotion'),
   );
 
   request.files.add(
@@ -57,13 +58,15 @@ void startCapturingPeriodically() {
   });
 }
 // Function to upload the recording to FastAPI
-  Future<String?> uploadRecording(String filePath) async {
-    final uri = Uri.parse("http://10.0.2.2:8000/upload-audio/");
+  Future<String?> uploadRecording(String filePath, String username) async {
+    final uri = Uri.parse("http://127.0.0.1:8000/upload-audio/");
     final request = http.MultipartRequest('POST', uri);
+    
     request.files.add(await http.MultipartFile.fromPath('file', filePath));
+    request.fields['username'] = username;
 
     final response = await request.send();
-
+ 
     if (response.statusCode == 200) {
       final responseBody = await response.stream.bytesToString();
       final decoded = json.decode(responseBody);
@@ -81,51 +84,51 @@ void startCapturingPeriodically() {
     if (!isRecording) {
       await _setupCameraController();
 
-      // if (await audioRecorder.hasPermission()) {
-      //   startCapturingPeriodically();
+      if (await audioRecorder.hasPermission()) {
+        startCapturingPeriodically();
 
-      //   final Directory appDocumentsDir =
-      //       await getApplicationDocumentsDirectory();
-      //   final String filePath = p.join(appDocumentsDir.path, "recording.wav");
+        final Directory appDocumentsDir =
+            await getApplicationDocumentsDirectory();
+        final String filePath = p.join(appDocumentsDir.path, "recording.wav");
 
-      //   await audioRecorder.start(
-      //     const RecordConfig(
-      //         // encoder: AudioEncoder.pcm16bits,
-      //         // sampleRate: 16000,
-      //         // numChannels: 1,
-      //         ),
-      //     path: filePath,
-      //   );
+        await audioRecorder.start(
+          const RecordConfig(
+              // encoder: AudioEncoder.pcm16bits,
+              // sampleRate: 16000,
+              // numChannels: 1,
+              ),
+          path: filePath,
+        );
 
-      //   setState(() {
-      //     isRecording = true;
-      //     recordingPath = null;
-      //   });
-      // }
+        setState(() {
+          isRecording = true;
+          recordingPath = null;
+        });
+      }
     } else {
       // Stop both audio and image capture
       periodicTimer?.cancel();
       print("Stopped periodic capture.");
 
-      // String? filePath = await audioRecorder.stop();
+      String? filePath = await audioRecorder.stop();
       await Future.delayed(const Duration(milliseconds: 500));
 
-      // if (filePath != null) {
-      //   setState(() {
-      //     isRecording = false;
-      //     recordingPath = filePath;
-      //   });
+      if (filePath != null) {
+        setState(() {
+          isRecording = false;
+          recordingPath = filePath;
+        });
 
-      //   final transcript = await uploadRecording(filePath);
-      //   if (transcript != null) {
-      //     setState(() {
-      //       _transcriptionText = transcript;
-      //     });
-      //     print("Transcript: $transcript");
-      //   }
+        final transcript = await uploadRecording(filePath, widget.username);
+        if (transcript != null) {
+          setState(() {
+            _transcriptionText = transcript;
+          });
+          print("Transcript: $transcript");
+        }
 
-      //   print("Recording saved at: $filePath");
-      // }
+        print("Recording saved at: $filePath");
+      }
     }
   } catch (e) {
     print("Error during recording toggle: $e");
@@ -322,7 +325,7 @@ Future<void> _setupCameraController() async {
                            }
                            else{
                             print("\n\n\nFile does not exist at: $recordingPath \n\n\n\n");
-                           }
+                           } 
                           },
                           icon: Icon(Icons.play_arrow, color: Colors.black54),
                           label: Text('Play Recording'),
