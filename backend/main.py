@@ -53,6 +53,11 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
+@app.post("/username/")
+async def upload_username(username: str = Form(...)):
+    # Optional: Save username to DB if you have a user collection
+    return {"message": f"Username '{username}' received."}
+
 @app.post("/predict-emotion")
 async def predict_emotion(file: UploadFile = File(...)):
     try:
