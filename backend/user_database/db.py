@@ -20,6 +20,9 @@ client = AsyncIOMotorClient(DATABASE_URL)
 # Get database by name
 db = client["InterviewCoachDB"]  # replace with your actual DB name if needed
 
+from motor.motor_asyncio import AsyncIOMotorGridFSBucket
+bucket = AsyncIOMotorGridFSBucket(db)
+
 # Initialize Beanie with document models
 async def init_db():
     await init_beanie(
