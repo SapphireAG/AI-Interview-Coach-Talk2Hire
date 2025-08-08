@@ -3,7 +3,10 @@ import os, platform, importlib.util, torch, torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel, PeftConfig
 from sentence_transformers import CrossEncoder
+from huggingface_hub import login
+import os
 
+login(token=os.environ["HUGGINGFACE_HUB_TOKEN"])
 
 ADAPTER_ID = "CodeSlayer/finetuned-feedback-model"
 

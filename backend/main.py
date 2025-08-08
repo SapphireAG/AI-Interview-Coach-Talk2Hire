@@ -48,7 +48,7 @@ app.add_middleware(
 
 device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = ResEmoteNet(num_classes=7).to(device)
-checkpoint=torch.load("/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/FER/best_resemotenet_model.pth", map_location=device)
+checkpoint=torch.load("FER/best_resemotenet_model.pth", map_location=device)
 model.load_state_dict(checkpoint)
 model.eval()
 
@@ -66,7 +66,7 @@ idx2label = {i: l for l, i in label2idx.items()}
 
 model_audio = ClassifierCNN(num_classes=len(LABELS)).to(device)
 
-ckpt_path = "/Users/amangolani/AppDev/AI-Interview-Coach-Talk2Hire/backend/cnn_mfcc_best.pth"
+ckpt_path = "cnn_mfcc_best.pth"
 state = torch.load(ckpt_path, map_location=device)
 model_audio.load_state_dict(state["model_state"])
 model_audio.eval()

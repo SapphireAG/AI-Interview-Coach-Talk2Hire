@@ -1,0 +1,56 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore virtual environments
+.venv/
+venv/
+env/
+
+# Ignore OS metadata
+.DS_Store
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+
+# Ignore Jupyter notebooks (if present)
+*.ipynb
+
+# Ignore audio/video/raw input files (not needed in image)
+Uploaded_Audio/
+Uploaded_Audio_Files/
+Transcripts/
+*.webm
+*.wav
+*.mp4
+*.mp3
+
+# Ignore test/inference/dev files
+test_*.py
+dev/
+inference/
+*.ipynb_checkpoints
+
+# Ignore git-related files
+.git/
+.gitignore
+
+# Ignore VSCode/IDE metadata
+.vscode/
+.idea/
+
+# Ignore system packages that shouldn't be copied
+*.egg-info/
+*.dist-info/
+
+# (Optional) Exclude large model files unless needed
+# Uncomment the next line if you want to exclude all pth
+*.pth
+
+# But include these specific models required at runtime
+!FER/best_resemotenet_model.pth
+!cnn_mfcc_best.pth
