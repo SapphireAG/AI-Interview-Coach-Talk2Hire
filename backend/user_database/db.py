@@ -5,7 +5,10 @@ from beanie import init_beanie
 
 # Import your document model(s)
 # from models import UserAudio
-from models import UserAudio  # <-- ADDED: new model to store username, audio path, and transcript
+
+
+
+from .models import UserAudio  # <-- ADDED: new model to store username, audio path, and transcript
 
 # Load .env variables
 load_dotenv()

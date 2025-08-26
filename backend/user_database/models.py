@@ -13,6 +13,8 @@ class UserAudio(Document):
     class Settings:
         name = "media_files"
         indexes = [
-            {"fields": ["username"]},
-            {"fields": ["created_at"]}
+            [("username", 1)],
+            [("created_at", 1)]
         ]
+    class Config:
+        arbitrary_types_allowed = True
