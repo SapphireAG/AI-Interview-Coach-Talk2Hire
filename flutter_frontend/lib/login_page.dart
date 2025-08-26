@@ -169,9 +169,9 @@ Future<void> sendUsername(String username) async {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
+              onPressed: ()  {
                 _getLoginInfo();
-                await sendUsername(_usernameController.text); // Send username to backend
+                sendUsername(_usernameController.text); // Send username to backend
                 Navigator.push(
                 context,
                 MaterialPageRoute(
