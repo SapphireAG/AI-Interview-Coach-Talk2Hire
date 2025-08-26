@@ -1,0 +1,39 @@
+# Flutter generated
+flutter_frontend/.dart_tool/
+flutter_frontend/build/
+flutter_frontend/coverage/
+flutter_frontend/pubspec.lock # <- only if your team decided not to lock deps; otherwise REMOVE this line
+
+# Android generated
+flutter_frontend/android/local.properties
+flutter_frontend/android/.gradle/
+flutter_frontend/android/app/build/
+flutter_frontend/android/build/
+
+# iOS generated
+flutter_frontend/ios/Pods/
+flutter_frontend/ios/Flutter/Flutter.framework/
+flutter_frontend/ios/Flutter/Flutter.podspec
+flutter_frontend/ios/Flutter/Generated.xcconfig
+flutter_frontend/ios/Flutter/App.framework
+flutter_frontend/ios/Flutter/engine/
+flutter_frontend/ios/Runner/GeneratedPluginRegistrant.*
+
+# macOS / Windows / Linux build outputs
+flutter_frontend/macos/Flutter/ephemeral/
+flutter_frontend/macos/Flutter/GeneratedPluginRegistrant.swift
+flutter_frontend/windows/flutter/ephemeral/
+flutter_frontend/linux/flutter/ephemeral/
+
+# Web build
+flutter_frontend/build/web/
+
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/**/*.pyc
+
+# General
+**/.DS_Store
+**/.idea/
+**/.vscode/
