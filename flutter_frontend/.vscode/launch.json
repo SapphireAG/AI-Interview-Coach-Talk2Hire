@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/amangolani/AI-Interview-Coach-Talk2Hire/AI-Interview-Coach-Talk2Hire/flutter_frontend",
+      "program": "/Users/amangolani/AI-Interview-Coach-Talk2Hire/AI-Interview-Coach-Talk2Hire/flutter_frontend/build/Debug/outDebug"
+    }
+  ]
+}
