@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from feedbackModel.feedback_llm import run_feedback_pipeline  
+from feedbackllm import run_feedback_pipeline  
 
 # Connecting to MongoDB
 MONGO_URI = 'mongodb+srv://singamreddy2024:JyFRA2tFzKHp2aMQ@talk-2-hire.oi4xnnc.mongodb.net/?'

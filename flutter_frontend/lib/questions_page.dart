@@ -8,6 +8,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+
 
 class Quiz extends StatefulWidget {
   final String username;
@@ -16,10 +18,38 @@ class Quiz extends StatefulWidget {
     return _QuizState();
   }
 }
- 
+class ToneResult {
+  final String prediction;
+  final double confidence;
+  final Map<String, double> allProbs;
+
+  ToneResult({
+    required this.prediction,
+    required this.confidence,
+    required this.allProbs,
+  });
+
+  factory ToneResult.fromJson(Map<String, dynamic> json) {
+    final probs = (json['all_probs'] as Map<String, dynamic>).map(
+      (k, v) => MapEntry(k, (v as num).toDouble()),
+    );
+    return ToneResult(
+      prediction: json['prediction'] as String,
+      confidence: (json['confidence'] as num).toDouble(),
+      allProbs: probs,
+    );
+  }
+}
+
 class _QuizState extends State<Quiz> {
-  final AudioRecorder audioRecorder = AudioRecorder();
+  bool isRecording = false;
+  String? recordingPath;
   String? _transcriptionText;
+  ToneResult? _tone;
+  Timer? periodicTimer;
+ //final audioRecorder = AudioRecorder();
+  final AudioRecorder audioRecorder = AudioRecorder();
+  
   var activeScreen = 'previous-screen';
   switchScreen() {
     setState(() {
@@ -41,7 +71,7 @@ Future<void> sendImage(File imageFile) async {
 
   print("Emotion prediction: $responseBody"); 
 }
-Timer? periodicTimer;
+
 void startCapturingPeriodically() {
   periodicTimer = Timer.periodic(Duration(seconds: 3), (timer) async {
     try {
@@ -77,8 +107,29 @@ void startCapturingPeriodically() {
     }
   }
 
-  bool isRecording = false;
-  String? recordingPath;
+  Future<ToneResult?> predictTone(String filePath) async {
+    final uri = Uri.parse("http://127.0.0.1:8000/predict-tone");
+    final req = http.MultipartRequest('POST', uri)
+      ..files.add(
+        await http.MultipartFile.fromPath(
+          'file',
+          filePath,
+          contentType: MediaType('audio', 'wav'), // change if mp3/m4a
+        ),
+      );
+
+    final res = await req.send();
+    final body = await res.stream.bytesToString();
+    if (res.statusCode == 200) {
+      final decoded = json.decode(body) as Map<String, dynamic>;
+      return ToneResult.fromJson(decoded);
+    } else {
+      print("predict-tone failed: ${res.statusCode} - $body");
+      return null;
+    }
+  }
+
+
   void toggleRecording() async {
   try {
     if (!isRecording) {
@@ -119,15 +170,21 @@ void startCapturingPeriodically() {
           recordingPath = filePath;
         });
 
-        final transcript = await uploadRecording(filePath, widget.username);
-        if (transcript != null) {
+        final results = await Future.wait([
+            uploadRecording(filePath, widget.username), // transcript
+            predictTone(filePath),                       // tone
+          ]);
+           final transcript = results[0] as String?;
+          final tone = results[1] as ToneResult?;
           setState(() {
-            _transcriptionText = transcript;
+            if (transcript != null) _transcriptionText = transcript;
+            if (tone != null) _tone = tone;
           });
-          print("Transcript: $transcript");
-        }
 
-        print("Recording saved at: $filePath");
+          print("Recording saved at: $filePath");
+          print("Transcript: $_transcriptionText");
+          print("Tone: ${_tone?.prediction} (${_tone?.confidence})");
+          print("Tone probs: ${tone?.allProbs}");
       }
     }
   } catch (e) {

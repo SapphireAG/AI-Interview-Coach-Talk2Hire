@@ -32,3 +32,14 @@ tqdm==4.67.1
 typing_extensions==4.14.0
 urllib3==2.4.0
 matplotlib
+pandas
+pymongo 
+transformers
+peft 
+sentence_transformers
+aiofiles
+seaborn 
+librosa 
+pathlib
+scikit-learn 
+huggingface_hub
