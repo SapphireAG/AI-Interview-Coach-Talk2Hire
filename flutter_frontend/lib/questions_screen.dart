@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class QuestionsPage extends StatefulWidget {
-  const QuestionsPage({super.key});
+  final String username;
+  const QuestionsPage({super.key, required this.username});
   @override
   State<QuestionsPage> createState() => _QuestionsPageState();
 }
@@ -10,7 +13,6 @@ String selectedCategory = "Scenario-Based Questions";
 int _selectedValue = 10; // Default selection
 
 void _startMock() {
-  // Implement your mock start logic here
   print("Mock started");
 }
 
@@ -25,48 +27,39 @@ class _QuestionsPageState extends State<QuestionsPage> {
           child: Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              // Adjust the radius as needed
               child: Image.asset(
                 'assets/NEW_logo.png',
                 height: 80.0,
                 width: 150.0,
-                //scale: 1.0,
                 fit: BoxFit.contain,
               ),
             ),
           ),
         ),
         backgroundColor: Color.fromARGB(255, 249, 250, 251),
-
         leading: Builder(
-          builder:
-              (context) => IconButton(
-                icon: Icon(Icons.menu, color: Colors.black38, size: 35),
-                iconSize: 40,
-                onPressed: () {
-                  Scaffold.of(context).openDrawer(); // <-- THIS works now
-                },
-              ),
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, color: Colors.black38, size: 35),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
         ),
-
         actions: [
           IconButton(
             icon: Icon(Icons.account_circle),
             iconSize: 40,
             color: Colors.black38,
-            onPressed: () {
-              // Handle account action
-            },
+            onPressed: () {},
           ),
         ],
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             Container(
-              height: 100, // Reduced height from default 200
+              height: 100,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 190, 233, 236),
               ),
@@ -85,20 +78,18 @@ class _QuestionsPageState extends State<QuestionsPage> {
               leading: Icon(Icons.analytics),
               title: Text('Performance Dashboard'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/report_page');
               },
             ),
           ],
         ),
       ),
-
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 120),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-
             children: [
               Container(
                 height: 400.0,
@@ -108,26 +99,21 @@ class _QuestionsPageState extends State<QuestionsPage> {
                   color: Color.fromARGB(255, 237, 237, 237),
                   borderRadius: BorderRadius.circular(20.0),
                   boxShadow: [
-                    BoxShadow(
+                    BoxShadow( 
                       color: Colors.black12,
                       blurRadius: 4,
                       offset: Offset(2, 2),
                     ),
                   ],
                 ),
-
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 20),
-                    // Dropdown Box
                     Container(
                       height: 50.0,
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -137,13 +123,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
                           borderRadius: BorderRadius.circular(12),
                           alignment: Alignment.center,
                           value: selectedCategory,
-                          dropdownColor:
-                              Colors
-                                  .white, // Background color for dropdown items
-                          icon: Icon(
-                            Icons.arrow_drop_down,
-                            color: Colors.black,
-                          ), // Dropdown icon
+                          dropdownColor: Colors.white,
+                          icon: Icon(Icons.arrow_drop_down, color: Colors.black),
                           items: [
                             DropdownMenuItem(
                               alignment: Alignment.center,
@@ -162,7 +143,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
                             DropdownMenuItem(
                               alignment: Alignment.center,
                               value: "Technical Questions",
-
                               child: Row(
                                 children: [
                                   Icon(Icons.computer, size: 28),
@@ -197,15 +177,10 @@ class _QuestionsPageState extends State<QuestionsPage> {
                         ),
                       ),
                     ),
-
                     SizedBox(height: 30),
-
                     Row(
                       children: [
-                        Icon(
-                          Icons.question_answer_outlined,
-                          color: Colors.black54,
-                        ),
+                        Icon(Icons.question_answer_outlined, color: Colors.black54),
                         Text(
                           '   Select the number of Questions',
                           style: TextStyle(
@@ -219,22 +194,88 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     SizedBox(height: 20),
                     _buildRadioOption(5, "5 Questions"),
                     SizedBox(height: 10),
-
                     _buildRadioOption(10, "10 Questions"),
                     SizedBox(height: 10),
                     _buildRadioOption(15, "15 Questions"),
-
-                    SizedBox(height: 10), // Spacing before dropdown box
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
-
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  _startMock();
-                  Navigator.pushNamed(context, '/questions_page');
+                // onPressed: () async {
+                //   _startMock();
+                //   final response = await http.post(
+                //     Uri.parse("http://127.0.0.1:8000/get-questions"),
+                //     headers: {"Content-Type": "application/json"},
+                //     body: jsonEncode({
+                //       "question_type": selectedCategory.contains("Scenario")
+                //           ? "Scenario"
+                //           : selectedCategory.contains("Technical")
+                //               ? "Technical"
+                //               : "Behavioral",
+                //       "count": _selectedValue,
+                //       "score": 8,
+                //     }),
+                //   );
+                //   if (response.statusCode == 200) {
+                //     final jsonResp = jsonDecode(response.body);
+                //     final List<dynamic> questions = jsonResp["questions"];
+                //     Navigator.pushNamed(
+                //       context,
+                //       '/questions_page',
+                //       arguments: questions,
+                //     );
+                //   } else {
+                //     print("Failed to fetch questions: ${response.statusCode}");
+                //     ScaffoldMessenger.of(context).showSnackBar(
+                //       const SnackBar(content: Text("Failed to load questions")),
+                //     );
+                //   }
+                // },
+
+
+                // In the 'Start Mock Interview' ElevatedButton's onPressed
+onPressed: () async {
+  _startMock();
+  // ... (http post request)
+  final response = await http.post(
+                    Uri.parse("http://127.0.0.1:8000/get-questions"),
+                    headers: {"Content-Type": "application/json"},
+                    body: jsonEncode({
+                      "question_type": selectedCategory.contains("Scenario")
+                          ? "Scenario"
+                          : selectedCategory.contains("Technical")
+                              ? "Technical"
+                              : "Behavioral",
+                      "count": _selectedValue,
+                      "score": 8,
+                    }),
+                  );
+  if (response.statusCode == 200) {
+    final jsonResp = jsonDecode(response.body);
+    final List<dynamic> questions = jsonResp["questions"];
+    
+    // 3. Pass both username and questions in a Map
+    Navigator.pushNamed(
+      context,
+      '/questions_page',
+      arguments: {
+        'questions': questions,
+        'username': widget.username, // Use the username from the widget
+      },
+    );
+  } else {
+                    print("Failed to fetch questions: ${response.statusCode}");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Failed to load questions")),
+                    );
+                  }
                 },
+
+
+
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 190, 233, 236),
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -244,7 +285,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
                   style: TextStyle(
                     fontSize: 22,
                     color: Color.fromARGB(255, 90, 60, 9),
-                    fontStyle: FontStyle.normal,
                   ),
                 ),
               ),
@@ -276,7 +316,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                   _selectedValue = newValue!;
                 });
               },
-              fillColor: WidgetStateProperty.all<Color>(
+              fillColor: MaterialStateProperty.all<Color>(
                 const Color.fromARGB(255, 97, 97, 97),
               ),
             ),
