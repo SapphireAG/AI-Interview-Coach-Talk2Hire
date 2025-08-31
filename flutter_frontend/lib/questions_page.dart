@@ -295,7 +295,18 @@ void didChangeDependencies() {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        onPressed: () => Navigator.pushNamed(context, '/questions_screen'), 
+                        // onPressed: () => Navigator.pushNamed(context, '/questions_screen'), 
+
+   onPressed: () {
+    if (currentQuestionIndex > 0) {
+      setState(() { currentQuestionIndex--; });
+    }
+    //Optionally, handle going back to previous screen if at first question:
+    else {
+      Navigator.pushNamed(context, '/questions_screen');
+    }
+  },
+
                         icon: const Icon(Icons.arrow_back),
                         iconSize: 28,
                       ),
