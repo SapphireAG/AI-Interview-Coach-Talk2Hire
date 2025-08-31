@@ -240,7 +240,7 @@ onPressed: () async {
   _startMock();
   // ... (http post request)
   final response = await http.post(
-                    Uri.parse("http://127.0.0.1:8000/get-questions"),
+                    Uri.parse("http://127.0.0.1:8000/get-questions/"),
                     headers: {"Content-Type": "application/json"},
                     body: jsonEncode({
                       "question_type": selectedCategory.contains("Scenario")
