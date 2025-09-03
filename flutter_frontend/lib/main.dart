@@ -115,7 +115,8 @@ class MyApp extends StatelessWidget {
               settings: RouteSettings(arguments: questions),
             );
           case '/report_page':
-            return MaterialPageRoute(builder: (_) => const ReportPage());
+                final username = settings.arguments as String? ?? "";
+                return MaterialPageRoute(builder: (_) => ReportPage(username: username));
           default:
             return MaterialPageRoute(builder: (_) => const LoginPage());
         }
