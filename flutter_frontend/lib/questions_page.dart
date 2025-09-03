@@ -294,22 +294,15 @@ void didChangeDependencies() {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        // onPressed: () => Navigator.pushNamed(context, '/questions_screen'), 
-
-   onPressed: () {
-    if (currentQuestionIndex > 0) {
-      setState(() { currentQuestionIndex--; });
-    }
-    //Optionally, handle going back to previous screen if at first question:
-    else {
-      Navigator.pushNamed(context, '/questions_screen');
-    }
-  },
-
-                        icon: const Icon(Icons.arrow_back),
-                        iconSize: 28,
-                      ),
+                      currentQuestionIndex > 0
+                          ? IconButton(
+                              onPressed: () {
+                                setState(() { currentQuestionIndex--; });
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                              iconSize: 28,
+                            )
+                          : SizedBox(width: 48), // Placeholder for alignment when back arrow is hidden
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 3),
                         decoration: BoxDecoration(
