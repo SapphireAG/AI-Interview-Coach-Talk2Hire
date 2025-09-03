@@ -426,6 +426,24 @@ void didChangeDependencies() {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/feedback_page');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFBEE9EC),
+                          foregroundColor: Colors.black,
+                          textStyle: const TextStyle(fontSize: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Text('View Feedback'),
+                      ),
+                    ),
                   ],
                 ],
               ),
