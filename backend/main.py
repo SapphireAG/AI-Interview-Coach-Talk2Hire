@@ -284,38 +284,19 @@ async def download_audio(file_id: str):
 #         return result
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=str(e))
+
+
+from database.questions_retrieval import get_questions, QuestionRequest
+
+@app.post("/get-questions/")
+def get_questions_route(data: QuestionRequest):
+    return get_questions(data)
     
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the AI Interview Coach API"}
 
 
-
-# Allow Flutter frontend to access FastAPI
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# MongoDB setup
-MONGO_URI= "mongodb+srv://singamreddy2024:JyFRA2tFzKHp2aMQ@talk-2-hire.oi4xnnc.mongodb.net/?"
-client = MongoClient(MONGO_URI)
-db = client["interview_coach"]
-collection = db["questions"]
-
-class QuestionRequest(BaseModel):
-    question_type: str
-    count: int
-
-@app.post("/get-questions/")
-def get_questions(data: QuestionRequest):
-    questions = list(collection.find(
-        {"question_type": data.question_type},
-        {"_id": 0}
-    ).limit(data.count))
-    return {"questions": questions}
 
 
 
