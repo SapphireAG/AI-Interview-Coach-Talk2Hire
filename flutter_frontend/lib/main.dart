@@ -7,12 +7,13 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_application_2/login_page.dart';
 import 'package:flutter_application_2/report_page.dart';
 import 'questions_screen.dart';
-
+import 'package:url_strategy/url_strategy.dart';
 import 'report_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalAudioScope().ensureInitialized();
+  setHashUrlStrategy(); 
   runApp(MyApp());
 }  
 
