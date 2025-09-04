@@ -2,16 +2,19 @@ from beanie import Document
 from pydantic import Field
 from typing import Optional
 from datetime import datetime, timezone
+from bson import ObjectId
 
 class UserAudio(Document):
     username: str = Field(..., description="Username of the uploader")
-    audio_path: str = Field(..., description="Path to the saved audio file")
+    file_id: ObjectId = Field(..., description="GridFS file ID")
     transcript: str = Field(..., description="Transcription of the audio file")
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), description="Timestamp when the record was created")
 
     class Settings:
-        name = "media_files"  # MongoDB collection name
+        name = "media_files"
         indexes = [
-            {"fields": ["username"]},
-            {"fields": ["created_at"]}
+            [("username", 1)],
+            [("created_at", 1)]
         ]
+    class Config:
+        arbitrary_types_allowed = True

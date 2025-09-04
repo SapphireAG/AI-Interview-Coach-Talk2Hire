@@ -166,23 +166,43 @@ Future<void> sendUsername(String username) async {
                   ),
                 ],
               ),
-            ),
+            ), 
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                _getLoginInfo();
-                await sendUsername(_usernameController.text); // Send username to backend
-                Navigator.push(
-                context,
-                MaterialPageRoute(
-                builder: (context) => LandingPage(username: _usernameController.text),
+              // onPressed: () async {
+              //   _getLoginInfo();
+              //   await sendUsername(_usernameController.text); // Send username to backend
+              //   Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //   builder: (context) => LandingPage(username: _usernameController.text),
                 
-                  ),
-                );
+              //     ),
+              //   );
 
               
-                // Navigator.pushNamed(context, '/questions_screen');
-              },
+              //   // Navigator.pushNamed(context, '/questions_screen');
+              // },
+
+
+
+              // ... inside ElevatedButton's onPressed
+onPressed: () async {
+  _getLoginInfo();
+  final username = _usernameController.text;
+  await sendUsername(username); 
+
+  // Use pushNamed and pass the username as an argument
+  Navigator.pushNamed(
+    context,
+    '/landing_page',
+    arguments: username,
+  );
+},
+
+
+
+
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(255, 190, 233, 236),
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),

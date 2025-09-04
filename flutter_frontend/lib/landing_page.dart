@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 //import 'dart:ui';
-//import 'package:flutter_application_2/login_page.dart';
+//import 'package:flutter_application_2/login_page.dart'; 
 class LandingPage extends StatefulWidget {
   final String username;
   const LandingPage({super.key,required this.username});
@@ -163,7 +163,19 @@ class LandingPageState extends State<LandingPage> {
               SizedBox(height: 20,),
               Center(
                 child: ElevatedButton.icon(
-                onPressed: ()=> Navigator.pushNamed(context,'/questions_screen'), 
+                // onPressed: ()=> Navigator.pushNamed(context,'/questions_screen'), 
+
+
+                // ... inside the 'Get Started!' ElevatedButton's onPressed
+onPressed: () => Navigator.pushNamed(
+  context,
+  '/questions_screen',
+  arguments: widget.username, // Pass username forward
+),
+
+
+
+
                 label: Text('Get Started!'), 
                 icon:Icon(Icons.arrow_forward),
                 style: ElevatedButton.styleFrom(

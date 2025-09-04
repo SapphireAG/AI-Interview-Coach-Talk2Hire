@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class ReportPage extends StatefulWidget {
-  const ReportPage({super.key});
+  final String username;
+  const ReportPage({super.key, required this.username});
 
   @override
   State<ReportPage> createState() => _ReportPageState();
@@ -63,10 +64,15 @@ class _ReportPageState extends State<ReportPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Menu Icon (Top Left)
-                  const Icon(
-                    Icons.arrow_back_ios,
-                    size: 25,
-                    color: Color.fromARGB(255, 100, 92, 92),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      size: 25,
+                      color: Color.fromARGB(255, 100, 92, 92),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/questions_screen', arguments: widget.username);
+                    },
                   ),
 
                   // Welcome Text (Top Center)
